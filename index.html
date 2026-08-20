@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختبار مبادئ الاقتصاد الكلي - 300 سؤال</title>
+    <title>منصة الاختبارات - الاقتصاد الكلي والمالية العامة</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,28 +13,116 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background: linear-gradient(135deg, #f0f2f5 0%, #d6eaf8 100%);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
-        .container {
+        /* ========== الصفحة الرئيسية ========== */
+        #landing-page {
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        #landing-page h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        #landing-page .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .exam-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .exam-card {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 30px 25px;
+            width: 280px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .exam-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .exam-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .exam-description {
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+
+        .macro-card .exam-icon {
+            color: #3498db;
+        }
+
+        .finance-card .exam-icon {
+            color: #27ae60;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        /* ========== منطقة الاختبار ========== */
+        #quiz-area {
+            display: none; /* تظهر فقط عند اختيار الاقتصاد الكلي */
             max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             padding: 30px;
         }
 
-        h1 {
+        #quiz-area h1 {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 10px;
         }
 
-        .subtitle {
+        #quiz-area .subtitle {
             text-align: center;
             color: #7f8c8d;
             margin-bottom: 30px;
@@ -168,6 +256,15 @@
             text-align: center;
         }
 
+        .back-home-btn {
+            background: #7f8c8d;
+            margin-top: 15px;
+        }
+
+        .back-home-btn:hover {
+            background: #6c7a7a;
+        }
+
         .result-container {
             display: none;
             text-align: center;
@@ -240,34 +337,59 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- الصفحة الرئيسية -->
+    <div id="landing-page">
+        <h1>📚 منصة الاختبارات التجريبية</h1>
+        <p class="subtitle">اختر المادة التي تريد أداء اختبار فيها</p>
+
+        <div class="exam-options">
+            <div class="exam-card macro-card" onclick="startMacroExam()">
+                <div class="exam-icon">📈</div>
+                <div class="exam-title">الاقتصاد الكلي</div>
+                <div class="exam-description">300 سؤال اختيار من متعدد</div>
+            </div>
+
+            <div class="exam-card finance-card" onclick="goToFinance()">
+                <div class="exam-icon">💰</div>
+                <div class="exam-title">المالية العامة</div>
+                <div class="exam-description">150 سؤال اختيار من متعدد</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>بالتوفيق في الاختبار!</p>
+        </footer>
+    </div>
+
+    <!-- منطقة اختبار الاقتصاد الكلي -->
+    <div id="quiz-area">
         <h1>اختبار مبادئ الاقتصاد الكلي</h1>
         <p class="subtitle">300 سؤال اختيار من متعدد - النتيجة النهائية ستظهر في نهاية الاختبار</p>
 
-        <div id="quiz-area">
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar">0%</div>
-            </div>
-
-            <div class="question-card" id="question-card">
-                <div class="question-number" id="question-number"></div>
-                <div class="question-text" id="question-text"></div>
-                <div class="options" id="options-container"></div>
-            </div>
-
-            <div class="navigation">
-                <div class="nav-buttons">
-                    <button id="prev-btn" onclick="changeQuestion(-1)">السابق</button>
-                    <button id="next-btn" onclick="changeQuestion(1)">التالي</button>
-                </div>
-                <div class="go-to">
-                    <span>الانتقال إلى سؤال:</span>
-                    <input type="number" id="go-to-input" min="1" max="300">
-                    <button onclick="goToQuestion()">اذهب</button>
-                </div>
-                <button class="submit-btn" onclick="submitQuiz()">تسليم الإجابات</button>
-            </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar">0%</div>
         </div>
+
+        <div class="question-card" id="question-card">
+            <div class="question-number" id="question-number"></div>
+            <div class="question-text" id="question-text"></div>
+            <div class="options" id="options-container"></div>
+        </div>
+
+        <div class="navigation">
+            <div class="nav-buttons">
+                <button id="prev-btn" onclick="changeQuestion(-1)">السابق</button>
+                <button id="next-btn" onclick="changeQuestion(1)">التالي</button>
+            </div>
+            <div class="go-to">
+                <span>الانتقال إلى سؤال:</span>
+                <input type="number" id="go-to-input" min="1" max="300">
+                <button onclick="goToQuestion()">اذهب</button>
+            </div>
+            <button class="submit-btn" onclick="submitQuiz()">تسليم الإجابات</button>
+        </div>
+
+        <button class="back-home-btn" onclick="goHome()">العودة للرئيسية</button>
 
         <div class="result-container" id="result-container">
             <h2>النتيجة النهائية</h2>
@@ -287,13 +409,13 @@
             </div>
             <div class="grade" id="grade"></div>
             <button onclick="resetQuiz()">إعادة الاختبار</button>
+            <button class="back-home-btn" onclick="goHome()">العودة للرئيسية</button>
             <div class="review-list" id="review-list"></div>
         </div>
     </div>
 
     <script>
         // ========== بيانات الأسئلة (300 سؤال) ==========
-        // يتم تحويل الإجابات الصحيحة من الحروف العربية إلى أرقام: أ=0، ب=1، ج=2، د=3
         const questions = [
             {
                 q: "ما المقصود بالموارد الاقتصادية؟",
@@ -1813,6 +1935,7 @@
         const goToInput = document.getElementById('go-to-input');
         const resultContainer = document.getElementById('result-container');
         const quizArea = document.getElementById('quiz-area');
+        const landingPage = document.getElementById('landing-page');
 
         // عرض السؤال الحالي
         function renderQuestion() {
@@ -1915,7 +2038,9 @@
             else grade = "يحتاج إلى مراجعة";
 
             // عرض النتيجة
-            quizArea.style.display = 'none';
+            document.querySelector('#quiz-area .question-card').style.display = 'none';
+            document.querySelector('#quiz-area .navigation').style.display = 'none';
+            document.querySelector('#quiz-area .back-home-btn').style.display = 'none';
             resultContainer.style.display = 'block';
 
             document.getElementById('correct-count').textContent = correctCount;
@@ -1948,12 +2073,38 @@
             quizSubmitted = false;
             currentIndex = 0;
             resultContainer.style.display = 'none';
-            quizArea.style.display = 'block';
+            document.querySelector('#quiz-area .question-card').style.display = 'block';
+            document.querySelector('#quiz-area .navigation').style.display = 'flex';
+            document.querySelector('#quiz-area .back-home-btn').style.display = 'block';
             renderQuestion();
         }
 
-        // تهيئة الصفحة
-        renderQuestion();
+        // بدء اختبار الاقتصاد الكلي
+        function startMacroExam() {
+            landingPage.style.display = 'none';
+            quizArea.style.display = 'block';
+            resetQuiz(); // تهيئة الاختبار
+        }
+
+        // الانتقال إلى اختبار المالية العامة
+        function goToFinance() {
+            window.location.href = 'fi.html';
+        }
+
+        // العودة إلى الصفحة الرئيسية
+        function goHome() {
+            landingPage.style.display = 'block';
+            quizArea.style.display = 'none';
+            resultContainer.style.display = 'none';
+            document.querySelector('#quiz-area .question-card').style.display = 'block';
+            document.querySelector('#quiz-area .navigation').style.display = 'flex';
+            document.querySelector('#quiz-area .back-home-btn').style.display = 'block';
+            userAnswers = new Array(totalQuestions).fill(null);
+            quizSubmitted = false;
+            currentIndex = 0;
+        }
+
+        // لا نستدعي renderQuestion عند التحميل حتى يتم اختيار الاختبار
     </script>
 </body>
 </html>
