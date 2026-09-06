@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مسابقة مفتش الخزينة الرئيسي - 60 سؤال QCM</title>
+<title>منصة اختبارات مفتش الخزينة الرئيسي</title>
 <style>
 :root {
   --primary: #0a4d8c;
@@ -30,11 +30,7 @@ body {
   line-height: 1.7;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-}
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
 /* Header */
 header {
@@ -48,748 +44,228 @@ header {
   position: relative;
   overflow: hidden;
 }
-
 header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(201, 169, 97, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
+  content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201, 169, 97, 0.15) 0%, transparent 70%); border-radius: 50%;
 }
-
-header h1 {
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-  position: relative;
-}
-
-header .subtitle {
-  opacity: 0.9;
-  font-size: 1rem;
-  position: relative;
-}
-
+header h1 { font-size: 1.8rem; margin-bottom: 8px; position: relative; }
+header .subtitle { opacity: 0.9; font-size: 1rem; position: relative; }
 .badge {
-  display: inline-block;
-  background: var(--secondary);
-  color: var(--primary-dark);
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  margin-top: 10px;
-  position: relative;
+  display: inline-block; background: var(--secondary); color: var(--primary-dark);
+  padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; margin-top: 10px; position: relative;
 }
 
 /* Screens */
 .screen { display: none; animation: fadeIn 0.4s ease; }
 .screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Home / Exam Selection Screen */
+.exam-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;
 }
+.exam-card {
+  background: var(--card); border-radius: 16px; padding: 30px; box-shadow: var(--shadow);
+  border-top: 5px solid var(--primary); transition: all 0.3s; cursor: pointer; text-align: center;
+}
+.exam-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(10, 77, 140, 0.15); border-top-color: var(--secondary); }
+.exam-card h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.3rem; }
+.exam-card p { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
+.exam-card .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+.exam-card .stat { background: #f0f4f9; padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: var(--primary-dark); }
 
 /* Intro Screen */
-.intro-card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-.intro-card h2 {
-  color: var(--primary);
-  margin-bottom: 15px;
-  border-bottom: 3px solid var(--secondary);
-  padding-bottom: 10px;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.info-item {
-  background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
-  padding: 18px;
-  border-radius: 12px;
-  border-right: 4px solid var(--primary);
-}
-
-.info-item .label {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-bottom: 5px;
-}
-
-.info-item .value {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--primary-dark);
-}
-
-.groups-list {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-}
-
-.groups-list h3 {
-  color: var(--primary);
-  margin-bottom: 15px;
-}
-
-.group-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  background: white;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  border-right: 3px solid var(--secondary);
-}
-
-.group-item .num {
-  background: var(--primary);
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
+.intro-card { background: var(--card); border-radius: 16px; padding: 30px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.intro-card h2 { color: var(--primary); margin-bottom: 15px; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin: 20px 0; }
+.info-item { background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%); padding: 18px; border-radius: 12px; border-right: 4px solid var(--primary); }
+.info-item .label { color: var(--muted); font-size: 0.85rem; margin-bottom: 5px; }
+.info-item .value { font-size: 1.3rem; font-weight: bold; color: var(--primary-dark); }
+.groups-list { background: #f8fafc; border-radius: 12px; padding: 20px; margin: 20px 0; }
+.groups-list h3 { color: var(--primary); margin-bottom: 15px; }
+.group-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: white; border-radius: 8px; margin-bottom: 8px; border-right: 3px solid var(--secondary); }
+.group-item .num { background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; }
 
 /* Buttons */
 .btn {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(10, 77, 140, 0.25);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none;
+  padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(10, 77, 140, 0.25); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
 }
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(10, 77, 140, 0.35);
-}
-
-.btn-secondary {
-  background: white;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-}
-
-.btn-success {
-  background: linear-gradient(135deg, var(--success) 0%, #1b5e20 100%);
-  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
-}
-
-.btn-danger {
-  background: linear-gradient(135deg, var(--danger) 0%, #8e0000 100%);
-}
-
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(10, 77, 140, 0.35); }
+.btn-secondary { background: white; color: var(--primary); border: 2px solid var(--primary); }
+.btn-success { background: linear-gradient(135deg, var(--success) 0%, #1b5e20 100%); box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25); }
+.btn-danger { background: linear-gradient(135deg, var(--danger) 0%, #8e0000 100%); }
 .btn-block { width: 100%; }
 
 /* Quiz Screen */
 .quiz-header {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 18px 22px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  background: var(--card); border-radius: 12px; padding: 18px 22px; margin-bottom: 20px; box-shadow: var(--shadow);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
 }
+.progress-info { display: flex; gap: 20px; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat .label { font-size: 0.8rem; color: var(--muted); }
+.stat .value { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+.progress-bar { width: 100%; height: 8px; background: var(--border); border-radius: 10px; overflow: hidden; margin-top: 10px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); transition: width 0.4s; border-radius: 10px; }
 
-.progress-info {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.question-card { background: var(--card); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.question-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+.question-num { background: var(--primary); color: white; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+.question-group { background: #f0f4f9; color: var(--primary-dark); padding: 5px 14px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; }
+.question-weight { background: var(--secondary); color: var(--primary-dark); padding: 5px 14px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; }
+.question-text { font-size: 1.1rem; line-height: 1.9; color: var(--text); margin-bottom: 22px; padding: 18px; background: #f8fafc; border-radius: 10px; border-right: 4px solid var(--primary); }
 
-.stat {
-  text-align: center;
-}
-
-.stat .label {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.stat .value {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--primary);
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-  transition: width 0.4s;
-  border-radius: 10px;
-}
-
-/* Question Card */
-.question-card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-.question-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.question-num {
-  background: var(--primary);
-  color: white;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.question-group {
-  background: #f0f4f9;
-  color: var(--primary-dark);
-  padding: 5px 14px;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.question-weight {
-  background: var(--secondary);
-  color: var(--primary-dark);
-  padding: 5px 14px;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-.question-text {
-  font-size: 1.1rem;
-  line-height: 1.9;
-  color: var(--text);
-  margin-bottom: 22px;
-  padding: 18px;
-  background: #f8fafc;
-  border-radius: 10px;
-  border-right: 4px solid var(--primary);
-}
-
-.options-list {
-  list-style: none;
-}
-
+.options-list { list-style: none; }
 .option {
-  background: white;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: all 0.25s;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  background: white; border: 2px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px;
+  cursor: pointer; transition: all 0.25s; display: flex; align-items: flex-start; gap: 12px;
 }
-
-.option:hover {
-  border-color: var(--primary);
-  background: #f0f4f9;
-  transform: translateX(-3px);
-}
-
-.option.selected {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border-color: var(--primary);
-  box-shadow: 0 2px 8px rgba(10, 77, 140, 0.15);
-}
-
+.option:hover { border-color: var(--primary); background: #f0f4f9; transform: translateX(-3px); }
+.option.selected { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-color: var(--primary); box-shadow: 0 2px 8px rgba(10, 77, 140, 0.15); }
 .option-checkbox {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--border);
-  border-radius: 6px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-  transition: all 0.2s;
-  font-weight: bold;
-  color: white;
+  width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; margin-top: 2px; transition: all 0.2s; font-weight: bold; color: white;
 }
+.option.selected .option-checkbox { background: var(--primary); border-color: var(--primary); }
+.option.selected .option-checkbox::after { content: '✓'; font-size: 14px; }
+.option-text { flex: 1; font-size: 1rem; line-height: 1.7; }
+.option-letter { font-weight: bold; color: var(--primary); margin-left: 5px; }
 
-.option.selected .option-checkbox {
-  background: var(--primary);
-  border-color: var(--primary);
-}
+.nav-buttons { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
 
-.option.selected .option-checkbox::after {
-  content: '✓';
-  font-size: 14px;
-}
-
-.option-text {
-  flex: 1;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.option-letter {
-  font-weight: bold;
-  color: var(--primary);
-  margin-left: 5px;
-}
-
-/* Navigation */
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-/* Question Navigator */
-.question-navigator {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 18px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-.navigator-title {
-  color: var(--primary);
-  margin-bottom: 12px;
-  font-size: 0.95rem;
-}
-
-.navigator-grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 6px;
-}
-
+.question-navigator { background: var(--card); border-radius: 12px; padding: 18px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.navigator-title { color: var(--primary); margin-bottom: 12px; font-size: 0.95rem; }
+.navigator-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
 .nav-item {
-  aspect-ratio: 1;
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  background: white;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 1; border: 2px solid var(--border); border-radius: 8px; background: white; cursor: pointer;
+  font-weight: bold; font-size: 0.85rem; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
 }
-
-.nav-item:hover {
-  border-color: var(--primary);
-  transform: scale(1.05);
-}
-
-.nav-item.current {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-
-.nav-item.answered {
-  background: #c8e6c9;
-  border-color: var(--success);
-  color: var(--success);
-}
-
-.nav-item.current.answered {
-  background: var(--success);
-  color: white;
-}
+.nav-item:hover { border-color: var(--primary); transform: scale(1.05); }
+.nav-item.current { background: var(--primary); color: white; border-color: var(--primary); }
+.nav-item.answered { background: #c8e6c9; border-color: var(--success); color: var(--success); }
+.nav-item.current.answered { background: var(--success); color: white; }
 
 /* Results Screen */
-.results-summary {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
+.results-summary { background: var(--card); border-radius: 16px; padding: 30px; box-shadow: var(--shadow); margin-bottom: 20px; text-align: center; }
 .score-circle {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  position: relative;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  width: 180px; height: 180px; border-radius: 50%; margin: 20px auto; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; color: white; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
-
 .score-circle::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
   background: conic-gradient(var(--score-color, var(--success)) var(--score-percent, 0%), #e0e0e0 0%);
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
   mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
 }
+.score-value { font-size: 2.5rem; font-weight: bold; z-index: 1; }
+.score-max { font-size: 0.9rem; opacity: 0.9; z-index: 1; }
+.score-percent { font-size: 1.1rem; margin-top: 5px; z-index: 1; }
+.score-label { font-size: 1.3rem; font-weight: bold; margin-top: 15px; padding: 8px 20px; border-radius: 20px; display: inline-block; }
 
-.score-value {
-  font-size: 2.5rem;
-  font-weight: bold;
-  z-index: 1;
-}
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 25px 0; }
+.stat-card { background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%); padding: 18px; border-radius: 12px; text-align: center; border-top: 3px solid var(--primary); }
+.stat-card .stat-value { font-size: 1.8rem; font-weight: bold; color: var(--primary); }
+.stat-card .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 5px; }
 
-.score-max {
-  font-size: 0.9rem;
-  opacity: 0.9;
-  z-index: 1;
-}
-
-.score-percent {
-  font-size: 1.1rem;
-  margin-top: 5px;
-  z-index: 1;
-}
-
-.score-label {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-top: 15px;
-  padding: 8px 20px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  margin: 25px 0;
-}
-
-.stat-card {
-  background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
-  padding: 18px;
-  border-radius: 12px;
-  text-align: center;
-  border-top: 3px solid var(--primary);
-}
-
-.stat-card .stat-value {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--primary);
-}
-
-.stat-card .stat-label {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 5px;
-}
-
-/* Group Results */
-.group-results {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-.group-results h3 {
-  color: var(--primary);
-  margin-bottom: 18px;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 10px;
-}
-
-.group-bar {
-  margin-bottom: 15px;
-}
-
-.group-bar-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-size: 0.9rem;
-}
-
-.group-bar-track {
-  height: 24px;
-  background: var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-}
-
+.group-results { background: var(--card); border-radius: 16px; padding: 25px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.group-results h3 { color: var(--primary); margin-bottom: 18px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+.group-bar { margin-bottom: 15px; }
+.group-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; }
+.group-bar-track { height: 24px; background: var(--border); border-radius: 12px; overflow: hidden; position: relative; }
 .group-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-  transition: width 1s ease;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 10px;
-  color: white;
-  font-weight: bold;
-  font-size: 0.85rem;
+  height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  transition: width 1s ease; display: flex; align-items: center; justify-content: flex-end;
+  padding: 0 10px; color: white; font-weight: bold; font-size: 0.85rem;
 }
 
-/* Question Review */
-.review-section {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-.review-section h3 {
-  color: var(--primary);
-  margin-bottom: 18px;
-}
-
-.review-item {
-  background: #f8fafc;
-  border-radius: 10px;
-  padding: 18px;
-  margin-bottom: 12px;
-  border-right: 4px solid var(--border);
-}
-
+.review-section { background: var(--card); border-radius: 16px; padding: 25px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.review-section h3 { color: var(--primary); margin-bottom: 18px; }
+.review-item { background: #f8fafc; border-radius: 10px; padding: 18px; margin-bottom: 12px; border-right: 4px solid var(--border); }
 .review-item.correct { border-right-color: var(--success); }
 .review-item.partial { border-right-color: var(--warning); }
 .review-item.wrong { border-right-color: var(--danger); }
 .review-item.unanswered { border-right-color: var(--muted); }
 
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.review-status {
-  padding: 4px 12px;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: white;
-}
-
+.review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.review-status { padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; color: white; }
 .review-status.correct { background: var(--success); }
 .review-status.partial { background: var(--warning); }
 .review-status.wrong { background: var(--danger); }
 .review-status.unanswered { background: var(--muted); }
+.review-score { font-weight: bold; color: var(--primary); font-size: 0.95rem; }
+.review-question { font-weight: 600; margin-bottom: 10px; line-height: 1.7; }
+.review-options { list-style: none; font-size: 0.9rem; }
+.review-options li { padding: 8px 12px; margin-bottom: 5px; border-radius: 6px; background: white; border-right: 3px solid transparent; }
+.review-options li.correct-answer { background: #e8f5e9; border-right-color: var(--success); }
+.review-options li.wrong-answer { background: #ffebee; border-right-color: var(--danger); text-decoration: line-through; }
+.review-options li.missed-answer { background: #fff3e0; border-right-color: var(--warning); }
+.explanation { margin-top: 12px; padding: 12px; background: #fffde7; border-radius: 8px; border-right: 3px solid var(--secondary); font-size: 0.9rem; line-height: 1.7; }
+.explanation strong { color: var(--primary-dark); }
 
-.review-score {
-  font-weight: bold;
-  color: var(--primary);
-  font-size: 0.95rem;
-}
+.tabs { display: flex; gap: 5px; margin-bottom: 20px; background: var(--card); padding: 6px; border-radius: 12px; box-shadow: var(--shadow); flex-wrap: wrap; }
+.tab { flex: 1; padding: 10px 15px; border: none; background: transparent; cursor: pointer; border-radius: 8px; font-weight: bold; color: var(--muted); transition: all 0.2s; font-size: 0.9rem; min-width: 120px; }
+.tab.active { background: var(--primary); color: white; }
 
-.review-question {
-  font-weight: 600;
-  margin-bottom: 10px;
-  line-height: 1.7;
-}
+.timer { background: var(--primary-dark); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-family: 'Courier New', monospace; font-size: 1rem; }
 
-.review-options {
-  list-style: none;
-  font-size: 0.9rem;
-}
-
-.review-options li {
-  padding: 8px 12px;
-  margin-bottom: 5px;
-  border-radius: 6px;
-  background: white;
-  border-right: 3px solid transparent;
-}
-
-.review-options li.correct-answer {
-  background: #e8f5e9;
-  border-right-color: var(--success);
-}
-
-.review-options li.wrong-answer {
-  background: #ffebee;
-  border-right-color: var(--danger);
-  text-decoration: line-through;
-}
-
-.review-options li.missed-answer {
-  background: #fff3e0;
-  border-right-color: var(--warning);
-}
-
-.explanation {
-  margin-top: 12px;
-  padding: 12px;
-  background: #fffde7;
-  border-radius: 8px;
-  border-right: 3px solid var(--secondary);
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-
-.explanation strong {
-  color: var(--primary-dark);
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 20px;
-  background: var(--card);
-  padding: 6px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  flex-wrap: wrap;
-}
-
-.tab {
-  flex: 1;
-  padding: 10px 15px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
-  color: var(--muted);
-  transition: all 0.2s;
-  font-size: 0.9rem;
-  min-width: 120px;
-}
-
-.tab.active {
-  background: var(--primary);
-  color: white;
-}
-
-/* Timer */
-.timer {
-  background: var(--primary-dark);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-family: 'Courier New', monospace;
-  font-size: 1rem;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .container { padding: 10px; }
-  header h1 { font-size: 1.3rem; }
-  .question-card { padding: 18px; }
-  .navigator-grid { grid-template-columns: repeat(8, 1fr); }
-  .score-circle { width: 150px; height: 150px; }
-  .score-value { font-size: 2rem; }
-  .nav-buttons { flex-direction: column; }
-  .btn { width: 100%; }
+  .container { padding: 10px; } header h1 { font-size: 1.3rem; } .question-card { padding: 18px; }
+  .navigator-grid { grid-template-columns: repeat(8, 1fr); } .score-circle { width: 150px; height: 150px; }
+  .score-value { font-size: 2rem; } .nav-buttons { flex-direction: column; } .btn { width: 100%; }
 }
-
-/* Print */
-@media print {
-  header, .nav-buttons, .tabs, .question-navigator { display: none; }
-  .review-item { page-break-inside: avoid; }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
-
-/* Animations */
-.shake { animation: shake 0.5s; }
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
+@media print { header, .nav-buttons, .tabs, .question-navigator, .exam-grid { display: none; } .review-item { page-break-inside: avoid; } }
 </style>
 </head>
 <body>
 
 <div class="container">
   <header>
-    <h1>🏛️ مسابقة محاكاة رقمية - مفتش خزينة رئيسي</h1>
-    <div class="subtitle">المدرسة الوطنية للإدارة والتوظيف - ENAJM موريتانيا</div>
-    <div class="badge">60 سؤال QCM - نظام تصحيح ذكي متعدد</div>
+    <h1 id="main-title">🏛️ منصة اختبارات مفتش الخزينة الرئيسي</h1>
+    <div class="subtitle" id="main-subtitle">المدرسة الوطنية للإدارة والتوظيف - ENAJM موريتانيا</div>
   </header>
 
-  <!-- شاشة البداية -->
-  <div id="intro-screen" class="screen active">
+  <!-- شاشة اختيار الاختبار -->
+  <div id="home-screen" class="screen active">
     <div class="intro-card">
-      <h2>📋 معلومات المسابقة</h2>
+      <h2>📚 اختر الاختبار المناسب للبدء</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">تم إعداد هذه الاختبارات لمحاكاة شروط مسابقة مفتش الخزينة الرئيسي بدقة عالية.</p>
+      <div class="exam-grid">
+        <div class="exam-card" onclick="selectExam('v2')">
+          <h3>📝 الاختبار الأول (النسخة الأساسية)</h3>
+          <p>يغطي الأساسيات في الاقتصاد، LOLF، الصفقات، المالية المحلية، والقانون الإداري.</p>
+          <div class="stats">
+            <div class="stat">60 سؤال</div>
+            <div class="stat">120 نقطة</div>
+            <div class="stat">90 دقيقة</div>
+          </div>
+          <button class="btn btn-block">بدء الاختبار الأول</button>
+        </div>
+        
+        <div class="exam-card" onclick="selectExam('v3')" style="border-top-color: var(--secondary);">
+          <h3>🚀 الاختبار الثاني (النسخة المتقدمة v3)</h3>
+          <p>أسئلة جديدة بالكامل تركز على التطبيق العمقي، نماذج الاقتصاد الكلي، المحاسبة العمومية، والرقابة الميدانية.</p>
+          <div class="stats">
+            <div class="stat">60 سؤال</div>
+            <div class="stat">120 نقطة</div>
+            <div class="stat">90 دقيقة</div>
+          </div>
+          <button class="btn btn-block btn-success">بدء الاختبار الثاني</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- شاشة مقدمة الاختبار المحدد -->
+  <div id="intro-screen" class="screen">
+    <div class="intro-card">
+      <h2 id="exam-title">معلومات المسابقة</h2>
       <div class="info-grid">
-        <div class="info-item">
-          <div class="label">عدد الأسئلة</div>
-          <div class="value">60 سؤال</div>
-        </div>
-        <div class="info-item">
-          <div class="label">المجموع الكلي</div>
-          <div class="value">120 نقطة</div>
-        </div>
-        <div class="info-item">
-          <div class="label">عدد المجموعات</div>
-          <div class="value">6 مجموعات</div>
-        </div>
-        <div class="info-item">
-          <div class="label">المدة المقترحة</div>
-          <div class="value">90 دقيقة</div>
-        </div>
+        <div class="info-item"><div class="label">عدد الأسئلة</div><div class="value" id="info-q-count">60</div></div>
+        <div class="info-item"><div class="label">المجموع الكلي</div><div class="value" id="info-max-score">120</div></div>
+        <div class="info-item"><div class="label">عدد المجموعات</div><div class="value" id="info-groups-count">6</div></div>
+        <div class="info-item"><div class="label">المدة المقترحة</div><div class="value">90 دقيقة</div></div>
       </div>
 
       <h2 style="margin-top:25px">⚖️ نظام التصحيح الذكي</h2>
@@ -798,20 +274,15 @@ header .subtitle {
         <p>✓ <strong>الخيار الصحيح:</strong> + (الدرجة ÷ عدد الإجابات الصحيحة)</p>
         <p>✓ <strong>الخيار الخاطئ:</strong> - (الدرجة ÷ عدد الخيارات الخاطئة المتاحة)</p>
         <p>✓ إذا كانت نتيجة السؤال سالبة، تُحوَّل تلقائياً إلى <strong>صفر</strong>.</p>
-        <p>✓ بعض الأسئلة لها <strong>إجابة واحدة</strong> وبعضها <strong>إجابات متعددة</strong>.</p>
       </div>
 
       <h2 style="margin-top:25px">📑 محاور المسابقة</h2>
-      <div class="groups-list">
-        <div class="group-item"><span>الاقتصاد الكلي والتطبيقي ومؤشراته</span><span class="num">1-10</span></div>
-        <div class="group-item"><span>القانون العضوي للمالية العامة (LOLF)</span><span class="num">11-20</span></div>
-        <div class="group-item"><span>الصفقات العمومية وضوابطها</span><span class="num">21-30</span></div>
-        <div class="group-item"><span>المالية المحلية وميزانيات البلديات</span><span class="num">31-40</span></div>
-        <div class="group-item"><span>القانون الإداري والوظيفة العمومية</span><span class="num">41-50</span></div>
-        <div class="group-item"><span>دور مفتش الخزينة وتقنيات الرقابة</span><span class="num">51-60</span></div>
-      </div>
+      <div class="groups-list" id="groups-list-container"></div>
 
-      <button class="btn btn-block btn-success" onclick="startQuiz()">🚀 ابدأ المسابقة الآن</button>
+      <div style="display:flex; gap:10px; margin-top:20px;">
+        <button class="btn btn-secondary" onclick="goHome()" style="flex:1">🏠 عودة للقائمة</button>
+        <button class="btn btn-success" onclick="startQuiz()" style="flex:2">🚀 ابدأ المسابقة الآن</button>
+      </div>
     </div>
   </div>
 
@@ -819,23 +290,12 @@ header .subtitle {
   <div id="quiz-screen" class="screen">
     <div class="quiz-header">
       <div class="progress-info">
-        <div class="stat">
-          <div class="label">السؤال</div>
-          <div class="value" id="current-q">1/60</div>
-        </div>
-        <div class="stat">
-          <div class="label">المجاب عنها</div>
-          <div class="value" id="answered-count">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">المجموعة</div>
-          <div class="value" id="current-group" style="font-size:0.85rem">—</div>
-        </div>
+        <div class="stat"><div class="label">السؤال</div><div class="value" id="current-q">1/60</div></div>
+        <div class="stat"><div class="label">المجاب عنها</div><div class="value" id="answered-count">0</div></div>
+        <div class="stat"><div class="label">المجموعة</div><div class="value" id="current-group" style="font-size:0.85rem">—</div></div>
       </div>
       <div class="timer" id="timer">00:00:00</div>
-      <div class="progress-bar" style="width:100%">
-        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
     </div>
 
     <div class="question-navigator">
@@ -866,32 +326,17 @@ header .subtitle {
       <h2 style="color:var(--primary)">🏆 النتائج النهائية</h2>
       <div class="score-circle" id="score-circle">
         <div class="score-value" id="final-score">0</div>
-        <div class="score-max">/ 120</div>
+        <div class="score-max" id="final-max">/ 120</div>
         <div class="score-percent" id="score-percent">0%</div>
       </div>
       <div class="score-label" id="score-label">—</div>
 
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-value" id="stat-correct">0</div>
-          <div class="stat-label">إجابات كاملة ✓</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="stat-partial">0</div>
-          <div class="stat-label">إجابات جزئية ~</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="stat-wrong">0</div>
-          <div class="stat-label">إجابات خاطئة ✗</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="stat-unanswered">0</div>
-          <div class="stat-label">لم تُجب ○</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="stat-time">00:00</div>
-          <div class="stat-label">الزمن المستغرق</div>
-        </div>
+        <div class="stat-card"><div class="stat-value" id="stat-correct">0</div><div class="stat-label">إجابات كاملة ✓</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-partial">0</div><div class="stat-label">إجابات جزئية ~</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-wrong">0</div><div class="stat-label">إجابات خاطئة ✗</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-unanswered">0</div><div class="stat-label">لم تُجب ○</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-time">00:00</div><div class="stat-label">الزمن المستغرق</div></div>
       </div>
     </div>
 
@@ -916,224 +361,220 @@ header .subtitle {
 
     <div class="nav-buttons">
       <button class="btn btn-secondary" onclick="window.print()">🖨️ طباعة النتائج</button>
-      <button class="btn btn-success" onclick="restartQuiz()">🔄 إعادة المسابقة</button>
+      <button class="btn btn-success" onclick="goHome()">🏠 العودة للقائمة الرئيسية</button>
     </div>
   </div>
 </div>
 
 <script>
-// ===================== بنك الأسئلة =====================
-const questions = [
-  // المجموعة 1: الاقتصاد الكلي
-  {id:1, group:"الاقتصاد الكلي", weight:1.2, text:"ما هي المعادلة الصحيحة لحساب الناتج المحلي الإجمالي بطريقة الإنفاق (Expenditure Approach)؟",
-   options:["GDP = C + I + G + (X - M)","GDP = C + S + T + (M - X)","GDP = C + I + G + (M - X)","GDP = C + I + G","لا شيء مما سبق"],
-   correct:[0], explanation:"طريقة الإنفاق: GDP = C + I + G + (X - M) حيث C الاستهلاك، I الاستثمار، G الإنفاق الحكومي، (X-M) صافي الصادرات."},
-  {id:2, group:"الاقتصاد الكلي", weight:1.8, text:"ما الفرق الجوهري بين الناتج المحلي الإجمالي الاسمي (Nominal GDP) والناتج المحلي الإجمالي الحقيقي (Real GDP)؟",
-   options:["الاسمي يقيم بأسعار سنة الأساس بينما الحقيقي بالأسعار الجارية","الاسمي يتأثر بالتضخم بينما الحقيقي يقيس التغير الفعلي في كمية الإنتاج بأسعار سنة الأساس الثابتة","الحقيقي يعبر عن رفاهية المجتمع بصورة كاملة بينما الاسمي لا","الاسمي يستبعد الخدمات بينما الحقيقي يشملها","جميع البدائل خاطئة"],
-   correct:[1], explanation:"الاسمي بالأسعار الجارية (يتأثر بالتضخم)، والحقيقي بأسعار ثابتة لسنة أساس."},
-  {id:3, group:"الاقتصاد الكلي", weight:1.8, text:"عندما يرتفع الطلب الكلي في الاقتصاد ليتجاوز الطاقة الإنتاجية المتاحة في ظل بطالة منخفضة، يسمى التضخم الناتج بـ:",
-   options:["تضخم دفع التكاليف (Cost-Push)","تضخم سحب الطلب (Demand-Pull)","الركود التضخمي (Stagflation)","التضخم المستورد","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"تضخم سحب الطلب يحدث عندما يتجاوز الطلب الكلي الطاقة الإنتاجية."},
-  {id:4, group:"الاقتصاد الكلي", weight:1.2, text:"يُحسب مخفض الناتج المحلي الإجمالي (GDP Deflator) كالتالي:",
-   options:["(الحقيقي ÷ الاسمي) × 100","(الاسمي ÷ الحقيقي) × 100","(أسعار سنة المقارنة ÷ أسعار سنة الأساس) × 100","(قيمة الدخل ÷ قيمة الإنفاق) × 100","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"GDP Deflator = (الاسمي ÷ الحقيقي) × 100."},
-  {id:5, group:"الاقتصاد الكلي", weight:3.0, text:"من أهم أدوات السياسة النقدية للبنك المركزي الموريتاني للتحكم في معروض النقود ومواجهة التضخم:",
-   options:["خفض معدلات الضرائب المباشرة","رفع سعر الفائدة الرئيسي لجعل الاقتراض أكثر كلفة والحد من الطلب","زيادة حجم المساعدات والتحويلات الاجتماعية","خفض سعر الفائدة الرئيسي لتشجيع الاستثمار","لا توجد إجابة صحيحة"],
-   correct:[1], explanation:"سعر الفائدة الرئيسي هو الأداة المحورية للسياسة النقدية."},
-  {id:6, group:"الاقتصاد الكلي", weight:1.8, text:"يتكون ميزان المدفوعات (Balance of Payments) من ثلاثة حسابات رئيسية:",
-   options:["الحساب الجاري، والحساب الرأسمالي والمالي، وصافي الأخطاء والسهو","الميزان التجاري، وميزان الخدمات، وميزان التحويلات الجارية","حساب الصادرات، والواردات، والاحتياطيات النقدية","ميزان العمليات الجارية، والقروض الدولية، والدعم الحكومي","لا شيء مما سبق"],
-   correct:[0], explanation:"ميزان المدفوعات: الحساب الجاري + الرأسمالي والمالي + الأخطاء والسهو."},
-  {id:7, group:"الاقتصاد الكلي", weight:3.0, text:"مراحل الدورة الاقتصادية (Business Cycle) المتتالية هي:",
-   options:["الازدهار، ثم الذروة، ثم الركود/الانكماش، ثم القاع","الركود، ثم الكساد، ثم التعافي الإجباري فقط","التضخم المالي، ثم الاستقرار، ثم الانهيار","التوسع المستمر دون توقف","جميع البدائل خاطئة"],
-   correct:[0], explanation:"مراحل الدورة: Expansion → Peak → Recession → Trough."},
-  {id:8, group:"الاقتصاد الكلي", weight:3.0, text:"السقف الاسترشادي الآمن لنسبة الدين العام إلى الناتج المحلي الإجمالي للدول النامية مثل موريتانيا:",
-   options:["ألا تتجاوز 100%","ألا تتجاوز 70%","ألا تتجاوز 30%","لا حدود طالما الفائدة سالبة","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"يُنصح للدول النامية بألا تتجاوز نسبة الدين 70% من الناتج المحلي."},
-  {id:9, group:"الاقتصاد الكلي", weight:1.8, text:"يوضح منحنى فيليبس (Phillips Curve) في الأمد القصير العلاقة بين:",
-   options:["التضخم والناتج المحلي الاسمي","معدل التضخم ومعدل البطالة","سعر الصرف وميزان المدفوعات","عجز الميزانية وحجم الدين","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"منحنى فيليبس يوضح العلاقة العكسية بين التضخم والبطالة في الأجل القصير."},
-  {id:10, group:"الاقتصاد الكلي", weight:3.0, text:"في اقتصاد مفتوح يفرض ضريبة نسبية على الدخل (T = tY) وميلاً حدياً للاستيراد (m)، تكون صيغة مضاعف الإنفاق الحكومي:",
-   options:["Mr = 1/(1 - b + m)","Mr = 1/(1 - b(1 - t) + m)","Mr = -b/(1 - b + bt)","Mr = 1/(1 - b)","لا توجد إجابة صحيحة"],
-   correct:[1], explanation:"مع وجود ضريبة نسبية واستيراد: Mr = 1/(1 - b(1 - t) + m)."},
-
-  // المجموعة 2: LOLF
-  {id:11, group:"LOLF والمالية العامة", weight:1.2, text:"أين يقع القانون العضوي لقوانين المالية (LOLF) في الهرم القانوني للدولة الموريتانية؟",
-   options:["مرتبة أدنى من القوانين العادية","مرتبة وسطى؛ يعلو الدستور ويخضع للقوانين المالية السنوية","دستوراً مالياً، أعلى من القوانين العادية وأدنى من الدستور","مرشوراً وزارياً داخلياً","لا شيء مما سبق"],
-   correct:[2], explanation:"LOLF هو الدستور المالي، أعلى من القوانين العادية ويخضع للدستور."},
-  {id:12, group:"LOLF والمالية العامة", weight:1.8, text:"التحول الفلسفي والعملي الأبرز للتعديل القانوني لعام 2026 (LOLF 2026-019):",
-   options:["العودة إلى ميزانية البنود وتكثيف الرقابة المسبقة","الانتقال من ميزانية الوسائل إلى ميزانية البرامج (الأداء والمخرجات)","إلغاء دور البرلمان في التصويت","قصر إعداد الميزانية على مصلحة الضرائب","جميع البدائل خاطئة"],
-   correct:[1], explanation:"الانتقال من ميزانية الوسائل إلى ميزانية البرامج القائمة على الأداء."},
-  {id:13, group:"LOLF والمالية العامة", weight:1.8, text:"مميزات الاعتمادات التقديرية (Crédits évaluatifs) مقارنة بالتقييدية (Crédits limitatifs):",
-   options:["التقديرية سقف أقصى لا يُتجاوز، والتقييدية مرنة","التقديرية تقديرات تقريبية مرنة، والتقييدية (كالرواتب) سقف صارم لا يتجاوز إلا بتشريع","التقييدية لا تخضع لتأشيرة المراقب المالي، والتقديرية تتطلبها دائماً","التقديرية للقطاع الخاص والتقييدية للقطاع العام","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"التقييدية سقف صارم (رواتب)، والتقديرية تقديرية مرنة (استهلاك، خدمات)."},
-  {id:14, group:"LOLF والمالية العامة", weight:1.8, text:"يقضي مبدأ تخصيص الاعتمادات (Spécialité des crédits) بـ:",
-   options:["جواز استخدام أي اعتماد لأي مشروع يراه وزير المالية مناسباً","كل اعتماد يمنحه البرلمان يُخصص لغرض محدد ولا يصرف في غير الغرض المرخص","إيداع الإيرادات في حساب موحد وسحب النفقات منه","وضع ميزانية خاصة بكل بلدية","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"مبدأ التخصص: كل اعتماد لغرض محدد ولا يمكن صرفه في غيره."},
-  {id:15, group:"LOLF والمالية العامة", weight:3.0, text:"القيود القانونية على التحويل بين البرامج والأبواب (Virement de crédits):",
-   options:["لا يجوز التحويل بين برامج نفس الباب إلا بموافقة وزير المالية وفي حدود 10%، ويُحظر تحويل اعتمادات التسيير لتغطية نفقات الموظفين أو الاستثمار","يجوز التحويل بحرية تامة داخل نفس الوزارة بقرار شفهي","يسمح بالتحويل المفتوح بين الاستثمار والموظفين بما يتجاوز 50%","التحويل بين الأبواب لا يتطلب إجراء تشريعياً","لا توجد إجابة صحيحة"],
-   correct:[0], explanation:"التحويل داخل نفس الباب بحد أقصى 10% وبموافقة وزير المالية، مع حظر تحويل التسيير للاستثمار أو الرواتب."},
-  {id:16, group:"LOLF والمالية العامة", weight:3.0, text:"الظروف التي تستوجب إعداد قانون مالية تكميلي (Loi de finances rectificative):",
-   options:["تراجع حاد في إيرادات الدولة نتيجة تقلبات خارجية (كتراجع أسعار الحديد 35%)","تمويل منحة تدريبية قصيرة الأجل لموظف واحد","رغبة البلدية في فتح صندوق خاص بالنظافة","كوارث طبيعية أو أزمات صحية طارئة تستدعي نفقات استثنائية","لا شيء مما سبق"],
-   correct:[0,3], explanation:"قانون المالية التكميلي يُعد لتراجع الإيرادات أو لتمويل نفقات طارئة غير مبرمجة."},
-  {id:17, group:"LOLF والمالية العامة", weight:1.8, text:"يقضي مبدأ توحيد حسابات الخزينة (Unité de Trésorerie) بـ:",
-   options:["جواز فتح حسابات بنكية تجارية مستقلة لكافة المديريات","وجوب إيداع كافة الإيرادات في حساب واحد مفتوح باسم الخزينة العامة لدى البنك المركزي (TSA)","دمج حسابات الدولة مع حسابات الدول المجاورة","عدم السماح بالصرف بالشيكات","جميع البدائل خاطئة"],
-   correct:[1], explanation:"حساب الخزينة الموحد (TSA) لدى البنك المركزي يجمع كل الإيرادات والنفقات."},
-  {id:18, group:"LOLF والمالية العامة", weight:1.8, text:"مزايا الشيك الحكومي (الشيك الإداري) كوسيلة دفع رسمية:",
-   options:["شيك لحامله قابل للتداول بالظهير دون قيود","غير قابل للرجوع فيه، مضمون الدفع لرصيده المحجوز، ويحظى بالأولوية في المقاصة","معفى من توقيع المحاسب العمومي","يسقط حقه بعد 48 ساعة","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"الشيك الحكومي غير قابل للإلغاء، مضمون الدفع، وله أولوية في المقاصة."},
-  {id:19, group:"LOLF والمالية العامة", weight:1.8, text:"قانون التصفية (Loi de règlement) ودوره الرقابي:",
-   options:["قانون سنوي لفرض ضرائب جديدة لتصفية ديون القطاع الخاص","قانون يصادق عليه البرلمان بعد السنة المالية لإقرار النتائج الفعلية للتنفيذ ومقارنتها بالتقديرات بناءً على تدقيق محكمة الحسابات","مرسوم لتصفية الموظفين المخالفين","خطة لإغلاق البلديات العاجزة","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"قانون التصفية يثبت النتائج الفعلية بعد تدقيق محكمة الحسابات."},
-  {id:20, group:"LOLF والمالية العامة", weight:1.8, text:"المدة القانونية لسقوط حق الدولة في استرداد الأموال المصروفة دون وجه حق:",
-   options:["سنة واحدة","5 سنوات من تاريخ الدفع","لا تسقط بالتقادم أبداً","10 سنوات بشرط عدم تظلم المحاسب","لا توجد إجابة صحيحة"],
-   correct:[1], explanation:"حق الدولة في استرداد المدفوعات غير المستحقة يسقط بعد 5 سنوات."},
-
-  // المجموعة 3: الصفقات العمومية
-  {id:21, group:"الصفقات العمومية", weight:1.2, text:"تقسيم صفقات الدولة حسب موضوعها:",
-   options:["تجارية خاصة، وإدارية وطنية، واستشارية تكميلية","الأشغال، التوريدات، الخدمات، والدراسات والاستشارات","مركزية، بلدية، ودولية ممولة ذاتياً","استثنائية، دورية، وملغاة","لا شيء مما سبق"],
-   correct:[1], explanation:"الصفقات: أشغال، توريدات، خدمات، ودراسات/استشارات."},
-  {id:22, group:"الصفقات العمومية", weight:1.8, text:"المبادئ الجوهرية لمنظومة الصفقات العمومية:",
-   options:["حرية الوصول للمنافسة، المساواة بين المترشحين، وشفافية الإجراءات","سرية العروض، تفضيل الشركات الأجنبية، وسرعة الصرف","حصرية التفاوض المباشر، والمرونة في الأسعار، وإلغاء لجان الرقابة","وحدة الحساب، سنوية الاعتمادات، وتخصص أبواب الصرف","جميع البدائل خاطئة"],
-   correct:[0], explanation:"المبادئ الثلاثة: حرية الولوج، المساواة، الشفافية."},
-  {id:23, group:"الصفقات العمومية", weight:1.8, text:"ضمانات نزاهة لجنة الصفقات العمومية ومنع تضارب المصالح:",
-   options:["توقيع كل عضو على تصريح بالشرف بعدم وجود مصلحة مع المتنافسين","منع الاتصال بالمتنافسين خارج الإطار الرسمي، وتوقيع المحضر من الجميع","تسجيل جلسات فتح المظاريف بالصوت والصورة ونشر النتائج","السماح لرئيس اللجنة باتخاذ قرارات الترسية بمفرده","الإجابتان A و B غير صحيحتين"],
-   correct:[0,1,2], explanation:"ضمانات النزاهة: تصريح الشرف، منع التواصل الفردي، توثيق المحاضر، والعلنية."},
-  {id:24, group:"الصفقات العمومية", weight:3.0, text:"القاعدة الذهبية للحد الأقصى لتعديل قيمة الصفقة عبر ملحق العقد (Avenant):",
-   options:["ألا يتجاوز 50% من القيمة الأصلية","ألا يتجاوز 20% من القيمة الأصلية، بموافقة لجنة الصفقات وقرار مسبب من وزير المالية","يسمح بالتعديل المفتوح حتى 100%","ألا يتجاوز 5% وإلا اعتبرت الصفقة باطلة","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"القاعدة الذهبية: الحد الأقصى 20% من القيمة الأصلية."},
-  {id:25, group:"الصفقات العمومية", weight:3.0, text:"كيف تُحسب غرامات التأخير (Pénalités de retard) المستحقة قانوناً على المقاول؟",
-   options:["غرامة يومية بين 0.1% و 0.5% من قيمة الجزء غير المنفذ، بحد أقصى 10% من القيمة الإجمالية","غرامة ثابتة 10,000 أوقية يومياً","خصم 50% تلقائياً فور تجاوز المدة بيوم","غرامات تقديرية يمكن لوزير المالية إلغاؤها شفهياً","لا توجد إجابة صحيحة"],
-   correct:[0], explanation:"غرامة يومية 0.1%-0.5% من قيمة الجزء المتأخر، بحد أقصى 10% من العقد."},
-  {id:26, group:"الصفقات العمومية", weight:1.8, text:"الشروط القانونية لمنح التسبيقات الميزانياتية (Avances) للمقاول:",
-   options:["ألا تتجاوز 30% من القيمة الإجمالية، مع تقديم ضمان بنكي بكامل قيمة التسبيق","تسبيق نقدي 50% دون كفالة للشركات الوطنية","التسبيق فقط للشركات الأقل سعراً بحد 10% بقرار شفهي","يُحظر تماماً تقديم أي تسبيقات","لا شيء مما سبق"],
-   correct:[0], explanation:"التسبيق بحد أقصى 30% مع كفالة بنكية مساوية لقيمته."},
-  {id:27, group:"الصفقات العمومية", weight:1.8, text:"شروط الإفراج عن الضمان المالي المحتجز (كفالة حسن التنفيذ 5%):",
-   options:["فوراً عند توقيع محضر الاستلام المؤقت","يُحتفظ به طيلة فترة الضمان (سنة)، ويُفرج عنه بعد زوال التحفظات وتوقيع محضر الاستلام النهائي","بقرار شخصي من المقاول","لا يُفرج عنه إطلاقاً","جميع البدائل خاطئة"],
-   correct:[1], explanation:"كفالة 5% تُحتفظ طيلة سنة الضمان، وتُفرج عند الاستلام النهائي."},
-  {id:28, group:"الصفقات العمومية", weight:3.0, text:"الحالات التي يُسمح فيها بالتفاوض المباشر (Gré à gré):",
-   options:["إسناد الصفقة لشركة يملكها أحد وجهاء المنطقة","الحالات الطارئة جداً والقوة القاهرة (فيضانات، أوبئة)، أو صفقات الأمن والدفاع","فشل المناقصات العمومية مرتين متتاليتين لعدم تقديم عروض مقبولة","الصفقات التي يقل غلافها عن عتبات الصفقات العمومية","الإجابتان A و B غير صحيحتين"],
-   correct:[1,2,3], explanation:"التفاوض المباشر استثناء: حالات طارئة، فشل مناقصات، صفقات دفاع، ومشتريات بسيطة."},
-  {id:29, group:"الصفقات العمومية", weight:1.8, text:"علامات ومؤشرات الاحتيال (Red Flags) التي يجب على المفتش التدقيق فيها:",
-   options:["فواتير بأرقام تسلسلية متعاقبة من نفس المورد لصفقات مختلفة","أسعار وحدوية تختلف عن الأسعار المصادق عليها في العقد","إدراج بنود غير موجودة في دفتر الشروط","تدوين مواد بالفاتورة أقل جودة مما استُلم فعلياً","كل ما سبق غير صحيح"],
-   correct:[0,1,2], explanation:"علامات الاحتيال: فواتير متسلسلة، تباين الأسعار، وبنود وهمية."},
-  {id:30, group:"الصفقات العمومية", weight:1.8, text:"عند حدوث خلافات مالية جسيمة أثناء تنفيذ الصفقة:",
-   options:["تُحال إلى سلطة تنظيم الصفقات للتحكيم الإداري، أو أمام المحاكم الإدارية والقضائية","يُحسم بقرار منفرد من رئيس الشركة الفائزة","تُحال تلقائياً للجمعية الوطنية","تُلغى الصفقة وتُصادر أموال المقاول","لا توجد إجابة صحيحة"],
-   correct:[0], explanation:"النزاعات تُحل ودياً أولاً، ثم تُحال للتحكيم أو القضاء الإداري."},
-
-  // المجموعة 4: المالية المحلية
-  {id:31, group:"المالية المحلية", weight:1.2, text:"من يملك سلطة المصادقة النهائية على مشروع ميزانية البلدية بعد تصويت المجلس البلدي؟",
-   options:["وزير المالية مباشرة","سلطة الوصاية (الوالي أو الحاكم)، وتُعتبر مصادقاً عليها ضمناً إذا لم تعترض خلال 30 يوماً","رئيس الجمعية الوطنية","البنك المركزي","لا شيء مما سبق"],
-   correct:[1], explanation:"سلطة الوصاية (الوالي/الحاكم) مع مهلة 30 يوم للمصادقة الضمنية."},
-  {id:32, group:"المالية المحلية", weight:1.8, text:"المكونات الأساسية للموارد الذاتية للبلدية:",
-   options:["الضرائب والرسوم المحلية (ضريبة السكن، patente، رسم النظافة، اللوحات الإعلانية)","القروض الدولية المباشرة من البنك الدولي","عائدات بيع أراضي الدومين العام","الإعانات من صندوق التضامن","جميع البدائل خاطئة"],
-   correct:[0], explanation:"الموارد الذاتية: الضرائب والرسوم المحلية."},
-  {id:33, group:"المالية المحلية", weight:1.8, text:"الحدود القانونية المفروضة على نفقات التسيير والاستثمار في ميزانية البلدية:",
-   options:["صرف كافة إيرادات الاستثمار لرواتب العمال","تحقيق توازن مالي، ويُحظر استخدام القروض لتمويل النفقات الاستهلاكية المتكررة، بل تُخصص للاستثمار فقط","نسبة تسيير لا تتجاوز 10% وتوجيه 90% للاستثمار","يحق للعمدة تحويل اعتمادات الاستثمار للتسيير بقرار بلدي","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"القروض فقط للاستثمار المنتج، ويُحظر استخدامها للنفقات الاستهلاكية."},
-  {id:34, group:"المالية المحلية", weight:3.0, text:"الهيئات الرسمية المكلفة قانوناً برقابة مالية البلديات:",
-   options:["وزارة الداخلية واللامركزية (سلطة الوصاية الإدارية)","المفتشية العامة للمالية (IGF) وتفتيش الخزينة (DGTCP)","ديوان المحاسبة (الرقابة القضائية البعدية)","لجان شعبية مستقلة","كل ما سبق غير صحيح"],
-   correct:[0,1,2], explanation:"الرقابة متعددة المستويات: وصاية إدارية + IGF/DGTCP + ديوان المحاسبة."},
-  {id:35, group:"المالية المحلية", weight:3.0, text:"الشروط والقيود القانونية للسماح للبلديات بالاقتراض:",
-   options:["ترخيص مكتوب وموافقة مسبقة من سلطة الوصاية ووزارة المالية","ألا يتجاوز سقف أقساط سداد الدين السنوية 30% من الإيرادات العادية","أن يكون القرض مخصصاً لمشروع استثماري منتج مع تقديم ضمانات كافية","يسمح بالاقتراض المفتوح طالما الفائدة أقل من 5%","لا توجد إجابة صحيحة"],
-   correct:[0,1,2], explanation:"شروط الاقتراض: موافقة مسبقة، سقف 30% لخدمة الدين، وتخصيص للاستثمار."},
-  {id:36, group:"المالية المحلية", weight:1.8, text:"عند عجز ميزانية البلدية عن تحقيق التوازن وعجز مالي مزمن، الإجراء القانوني:",
-   options:["تجميد الصلاحيات وحل البلدية فوراً","إعلان الوصاية المالية المشددة وتعيين مندوب خاص لوضع خطة إنقاذ","تحمل وزارة المالية لكافة الديون","إغلاق مقر البلدية","لا شيء مما سبق"],
-   correct:[1], explanation:"الوصاية المالية المشددة مع تعيين مندوب خاص لخطة الإنقاذ."},
-  {id:37, group:"المالية المحلية", weight:3.0, text:"في الحالات القصوى لتعثر البلديات وتورط مجالسها في تلاعب واختلاس:",
-   options:["حل المجلس البلدي بمرسوم من مجلس الوزراء بناءً على تقرير معلل من وزير الداخلية","تعيين لجنة تسيير مؤقتة لإدارة الشؤون حتى انتخابات جديدة","قيام العمدة بإلغاء الانتخابات والتمديد لنفسه","إلزام الأعضاء المتورطين بالتعويض المالي الشخصي وإحالتهم للقضاء","جميع البدائل خاطئة"],
-   correct:[0,1,3], explanation:"الحلول: حل المجلس، لجنة تسيير مؤقتة، ومتابعة قضائية ومالية للمسؤولين."},
-  {id:38, group:"المالية المحلية", weight:1.8, text:"التحويلات المالية الحكومية للبلديات تخضع لرقابة دورية من:",
-   options:["المحاسب العمومي الذي يملك تحويلها لحسابه الخاص","الإدارة العامة للخزينة والمحاسبة العمومية (DGTCP) ومراقب الخزينة","لجان تفتيش البنك التجاري المحلي","لا تخضع لأي رقابة بعدية","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"DGTCP ومراقب الخزينة يراقبان مسار التحويلات الحكومية."},
-  {id:39, group:"المالية المحلية", weight:1.8, text:"الحساب الإداري للبلدية (Compte administratif) ومن يراجعه:",
-   options:["كشف حساب تفرضه البنوك الخاصة شهرياً","وثيقة محاسبية سنوية يعدها العمدة، تُعرض على المجلس البلدي للمصادقة قبل رفعها للوصاية وديوان المحاسبة","سجل سري للتبرعات الأجنبية","تقرير سنوي من المحاسب البلدي دون موافقة المجلس","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"الحساب الإداري: وثيقة العمدة السنوية تعرض على المجلس ثم الوصاية وديوان المحاسبة."},
-  {id:40, group:"المالية المحلية", weight:1.8, text:"تهدف الإصلاحات الهيكلية لقانون المالية المحلية (2024-2026) إلى:",
-   options:["زيادة حصة الإيرادات الجبائية الموزعة على الجماعات المحلية لتصل إلى 30% بحلول 2030","تقليص صلاحيات المجالس البلدية","إلغاء الضرائب المحلية والاعتماد على الاقتراض الخارجي","رقمنة الإدارة المالية المحلية وتحديث السجلات العقارية","لا توجد إجابة صحيحة"],
-   correct:[0,3], explanation:"الإصلاحات: ترفيع الحصة إلى 30% بحلول 2030 ورقمنة الإدارة المالية."},
-  {id:41, group:"القانون الإداري", weight:1.2, text:"الخريطة الإدارية للدولة الموريتانية تتكون من:",
-   options:["15 ولاية، 60 مقاطعة، 40 مركزاً","13 ولاية، 53 مقاطعة، 32 مركزاً إدارياً، بالإضافة للبلديات","10 ولايات فقط دون مقاطعات","5 أقاليم جهوية كبرى","لا شيء مما سبق"],
-   correct:[1], explanation:"13 ولاية، 53 مقاطعة، 32 مركزاً إدارياً، والبلديات الحضرية والريفية."},
-
-  // المجموعة 5: القانون الإداري
-  {id:42, group:"القانون الإداري", weight:1.8, text:"الفرق الجوهري بين اللامركزية الإدارية واللا تمركز الإداري:",
-   options:["اللامركزية تركيز السلطة عند الوزير، واللا تمركز تفويضها للبلديات","اللامركزية منح الشخصية المعنوية والاستقلال المالي للجماعات المحلية المنتخبة، واللا تمركز توزيع صلاحيات الإدارة المركزية على ممثلين معينين (ولاة، حكام)","اللامركزية للعسكرية واللا تمركز للمدارس","لا فرق قانوني","جميع البدائل خاطئة"],
-   correct:[1], explanation:"اللامركزية: استقلالية الجماعات المنتخبة. اللا تمركز: تفويض داخل الإدارة المركزية."},
-  {id:43, group:"القانون الإداري", weight:1.8, text:"خصائص أملاك الدولة في الدومين العام:",
-   options:["عدم جواز بيعها أو التصرف فيها (عدم القابلية للتصرف)","عدم سقوط ملكية الدولة عنها مهما طال الزمن (عدم القابلية للتقادم)","عدم جواز الحجز عليها من الدائنين (عدم القابلية للحجز)","خضوعها التام لقواعد القانون الخاص","الإجابتان A و B غير صحيحتين"],
-   correct:[0,1,2], explanation:"الدومين العام: غير قابل للتصرف، ولا للتقادم، ولا للحجز."},
-  {id:44, group:"القانون الإداري", weight:3.0, text:"الأركان الأساسية لصحة القرار الإداري:",
-   options:["الاختصاص، الشكل والإجراءات، المحل، السبب، والغاية (المصلحة العامة)","التوقيع الشخصي للعمدة، ختم الوالي، وموافقة المراقب المالي","النشر خلال 24 ساعة وتأشيرة السلك المالي","موافقة مستشاري البلدية بالإجماع","كل ما سبق غير صحيح"],
-   correct:[0], explanation:"أركان القرار: الاختصاص، الشكل، المحل، السبب، الغاية."},
-  {id:45, group:"القانون الإداري", weight:1.8, text:"عناصر النظام العام التي يشملها الضبط الإداري للوالي والحاكم:",
-   options:["الأمن العام","الصحة العامة","السكينة العامة","الضبط القضائي والتحقيق الجنائي","لا توجد إجابة صحيحة"],
-   correct:[0,1,2], explanation:"عناصر النظام العام: الأمن، الصحة، السكينة. الضبط القضائي من اختصاص النيابة."},
-  {id:46, group:"القانون الإداري", weight:1.8, text:"المبادئ الأساسية للوظيفة العمومية في موريتانيا:",
-   options:["المساواة في الولوج على أساس الجدارة","التدرج الهرمي وسلطة الرؤساء","الحياد التام لخدمة المصلحة العامة","استمرارية تقديم الخدمة تحت كل الظروف","لا شيء مما سبق"],
-   correct:[0,1,2,3], explanation:"مبادئ الوظيفة: المساواة، التدرج، الحياد، الاستمرارية."},
-  {id:47, group:"القانون الإداري", weight:1.8, text:"الواجبات والمحظورات الصارمة على الموظف العمومي:",
-   options:["الالتزام بالسر المهني","تجنب تضارب المصالح وحظر النشاط التجاري الموازي","احترام أوقات العمل والتسلسل الهرمي","جواز قبول الهدايا البسيطة لتسريع المعاملات","جميع البدائل خاطئة"],
-   correct:[0,1,2], explanation:"واجبات الموظف: السر المهني، تجنب تضارب المصالح، احترام التسلسل. يُحظر قبول الهدايا."},
-  {id:48, group:"القانون الإداري", weight:3.0, text:"عقوبات الدرجة الثالثة (العقوبات القصوى) في القانون الموريتاني:",
-   options:["الإنذار المكتوب واللوم البسيط","الحرمان من الترقية وتخفيض الرتبة","العزل من الوظيفة (الرفد التام)","الإحالة القسرية للتقاعد المبكر","الإجابتان A و B غير صحيحتين"],
-   correct:[2,3], explanation:"عقوبات الدرجة الثالثة: العزل والإحالة القسرية للتقاعد المبكر."},
-  {id:49, group:"القانون الإداري", weight:1.8, text:"الفارق الجوهري في توزيع المسؤولية بين الآمر بالصرف والمحاسب العمومي:",
-   options:["الآمر بالصرف يتحمل المسؤولية المالية الشخصية عن النقص، والمحاسب إدارية فقط","المحاسب يتحمل شخصياً ومالياً كامل المسؤولية عن حفظ الأموال وصحة الصرف، والآمر بالصرف يتحمل المسؤولية الإدارية والسياسية عن قانونية الالتزام","كلاهما يشتركان في مسؤولية واحدة مدمجة","المحاسب لا يسأل إلا إذا ثبت تورطه الجنائي","كل ما سبق غير صحيح"],
-   correct:[1], explanation:"الفصل الصارم: المحاسب مسؤول مالياً عن الصرف، والآمر بالصرف مسؤول إدارياً عن الالتزام."},
-  {id:50, group:"القانون الإداري", weight:1.8, text:"الطعن في اللوائح الانتخابية يتم أمام:",
-   options:["وزير الداخلية بقرار نهائي","المحكمة العليا في غضون 8 أيام","لجان التحكيم للجنة الوطنية للانتخابات","مجلس الشيوخ والبرلمان","لا توجد إجابة صحيحة"],
-   correct:[1], explanation:"الطعن في اللوائح الانتخابية أمام الغرفة الإدارية بالمحكمة العليا خلال 8 أيام."},
-
-  // المجموعة 6: دور مفتش الخزينة
-  {id:51, group:"دور مفتش الخزينة", weight:1.2, text:"علاقة مفتش الخزينة بالجهات والمحاسبين المفتشين:",
-   options:["رئاسة هرمية إدارية مباشرة بسلطة العزل","علاقة تفتيش ورقابة واستقلالية فنية للتأكد من سلامة المعاملات ورفع تقارير لـ DGTCP","علاقة محاسبية تضامنية بتوقيع الشيكات","علاقة تمثيل برلمانية","لا شيء مما سبق"],
-   correct:[1], explanation:"علاقة تفتيش ورقابة مستقلة فنياً، مع رفع تقارير لـ DGTCP."},
-  {id:52, group:"دور مفتش الخزينة", weight:1.8, text:"الخطوات الميدانية الإلزامية لفحص الصندوق المفاجئ (Unexpected Box Audit):",
-   options:["طلب فتح الخزنة بحضور المحاسب وأمين الصندوق فوراً، وإجراء جرد فعلي ومقارنته بالدفاتر","إخطار المحاسب قبل أسبوعين","الاكتفاء بالتدقيق المكتبي لكشوف البنوك","فرز وتصنيف النقدية والشيكات والسندات، وتحرير محضر جرد فوري موقع من الحاضرين","جميع البدائل خاطئة"],
-   correct:[0,3], explanation:"الفحص المفاجئ: فتح الخزنة فوراً، جرد مادي، محضر موقع من الجميع."},
-  {id:53, group:"دور مفتش الخزينة", weight:1.8, text:"قواعد مسك الدفاتر المحاسبية التي يجب التحقق منها في الدفتر اليومي:",
-   options:["أن يكون مرقماً وموقعاً ومختوماً من السلطة المختصة قبل الاستخدام","حظر الفراغات وشطب أي فراغ بخط أفقي","منع الكشط أو المسح، وتصحيح الأخطاء بقيد عكسي","جواز استخدام الحبر الماحي والتعديل الرقمي المباشر","الإجابتان A و B غير صحيحتين"],
-   correct:[0,1,2], explanation:"قواعد الدفاتر: الترقيم، التأشير، منع الفراغات والكشط، والتصحيح بقيد عكسي."},
-  {id:54, group:"دور مفتش الخزينة", weight:3.0, text:"المستندات الإلزامية لملف نفقة عمومية بقيمة 85 مليون أوقية:",
-   options:["أمر بالدفع والصرف موقع من الآمر بالصرف في حدود الاعتمادات","الفاتورة الأصلية ومحضر الاستلام الفني موقع من لجنة الاستلام","عقد التوريد الأصلي وشهادة المطابقة الفنية","قرار الهبة الدولية وجواز سفر ممثل الشركة","كل ما سبق غير صحيح"],
-   correct:[0,1,2], explanation:"وثائق النفقة: أمر الصرف، الفاتورة، محضر الاستلام، العقد، وشهادة المطابقة."},
-  {id:55, group:"دور مفتش الخزينة", weight:1.8, text:"التمييز بين الخطأ المحاسبي والمخالفة المالية:",
-   options:["الخطأ المحاسبي سهو غير متعمد يُصحح بقيد عكسي، والمخالفة المالية عمل متعمد يخالف اللوائح ويتسبب في إهدار المال العام ويستوجب عقوبات","المخالفة المالية دائماً خطأ بسيط يُعالج ودياً","الخطأ المحاسبي يستوجب الإحالة الفورية للقضاء الجنائي","لا فرق وكلاهما يوجبان مصادرة أموال المحاسب","لا توجد إجابة صحيحة"],
-   correct:[0], explanation:"الخطأ المحاسبي: سهو غير مقصود. المخالفة المالية: عمل متعمد يستوجب المساءلة."},
-  {id:56, group:"دور مفتش الخزينة", weight:3.0, text:"صرف 2 مليون أوقية لموظف كسلفة مؤقتة دون ترخيص رسمي:",
-   options:["سلفة مهام اعتيادية مسموح بها","مخالفة مالية جسيمة (سلف غير مصرح بها) تمثل شبهة اختلاس وتستوجب المساءلة الجنائية والمالية","إجراء قانوني إذا رد الموظف خلال 15 يوماً","خطأ كتابي تافه","لا شيء مما سبق"],
-   correct:[1], explanation:"السلف غير المصرح بها مخالفة جسيمة وشبهة اختلاس."},
-  {id:57, group:"دور مفتش الخزينة", weight:1.8, text:"التقرير الخاص (Rapport spécial) الذي يعده المفتش:",
-   options:["تقرير سنوي شامل لإحصاءات البلديات","تقرير عاجل ومفصل في الحالات الاستثنائية (اختلاس، عجز ضخم، تزوير) يُرفع مباشرة لوزير المالية","تقرير شهري عادي للأنشطة","مذكرة فنية لطلب إجازة","جميع البدائل خاطئة"],
-   correct:[1], explanation:"التقرير الخاص: وثيقة طارئة للحالات الاستثنائية ترفع مباشرة لوزير المالية."},
-  {id:58, group:"دور مفتش الخزينة", weight:1.8, text:"الحدود القانونية للتنسيق بين مفتشية الخزينة والمفتشية العامة للمالية (IGF):",
-   options:["تبعية رئاسية كاملة لـ IGF","علاقة تنسيق وتكامل مهني دون تبعية إدارية؛ تُحال الملفات الجسيمة لـ IGF","منع تبادل المعلومات منعاً لازدواجية العمل","IGF تقتصر على الرقابة البعدية ومفتشية الخزينة على المسبقة","الإجابتان A و B غير صحيحتين"],
-   correct:[1], explanation:"علاقة تنسيق وتكامل دون تبعية، مع إحالة الملفات الجسيمة لـ IGF."},
-  {id:59, group:"دور مفتش الخزينة", weight:1.8, text:"متطلبات تسليم المهام (Remise de service) عند انتقال المحاسب:",
-   options:["جرد فعلي كامل للصندوق والموجودات والأوراق ذات القيمة بحضور مفتش الخزينة","تحرير محضر تسليم مهام رسمي من ثلاث نسخ يوقعه المحاسب القديم والجديد ومفتش الخزينة","انتقال المسؤولية المالية الكاملة للمحاسب الجديد فور التوقيع دون أثر رجعي للقديم","إقرار المحاسب الجديد بتحمل كافة الأخطاء السابقة دون مراجعة","كل ما سبق غير صحيح"],
-   correct:[0,1,2], explanation:"تسليم المهام: جرد مادي، محضر ثلاثي، انتقال المسؤولية بدون أثر رجعي."},
-  {id:60, group:"دور مفتش الخزينة", weight:1.8, text:"للحصول على شهادة الإبراء من المسؤولية المالية (Quitus):",
-   options:["تقديم عريضة لوزير المالية مع شهادة حسن سلوك","صدور قرار إبراء رسمي من ديوان المحاسبة بعد مراجعة الحساب السنوي","موافقة شفهية من مفتش الخزينة","سقوط المسؤولية بعد 24 ساعة","لا توجد إجابة صحيحة"],
-   correct:[1], explanation:"الإبراء (Quitus) يصدر من ديوان المحاسبة بعد تدقيق الحساب السنوي."}
-];
+// ===================== بنك الأسئلة الديناميكي =====================
+const EXAMS_DATA = {
+  v2: {
+    title: "مسابقة محاكاة رقمية - مفتش خزينة رئيسي (النسخة الأساسية)",
+    subtitle: "المدرسة الوطنية للإدارة والتوظيف - ENAJM موريتانيا",
+    questions: [
+      {id:1, group:"الاقتصاد الكلي", weight:1.2, text:"ما هي المعادلة الصحيحة لحساب الناتج المحلي الإجمالي بطريقة الإنفاق؟", options:["GDP = C + I + G + (X - M)","GDP = C + S + T + (M - X)","GDP = C + I + G + (M - X)","GDP = C + I + G","لا شيء مما سبق"], correct:[0], explanation:"طريقة الإنفاق: GDP = C + I + G + (X - M)."},
+      {id:2, group:"الاقتصاد الكلي", weight:1.8, text:"ما الفرق الجوهري بين الناتج المحلي الاسمي والحقيقي؟", options:["الاسمي بأسعار سنة الأساس","الاسمي يتأثر بالتضخم بينما الحقيقي يقيس التغير الفعلي بالإنتاج بأسعار ثابتة","الحقيقي يعبر عن الرفاهية فقط","الاسمي يستبعد الخدمات","جميع البدائل خاطئة"], correct:[1], explanation:"الاسمي بالأسعار الجارية، والحقيقي بأسعار ثابتة لسنة أساس."},
+      {id:3, group:"الاقتصاد الكلي", weight:1.8, text:"عندما يرتفع الطلب الكلي ليتجاوز الطاقة الإنتاجية في ظل بطالة منخفضة، يسمى التضخم:", options:["تضخم دفع التكاليف","تضخم سحب الطلب","الركود التضخمي","التضخم المستورد","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"تضخم سحب الطلب يحدث عندما يتجاوز الطلب الكلي الطاقة الإنتاجية."},
+      {id:4, group:"الاقتصاد الكلي", weight:1.2, text:"يُحسب مخفض الناتج المحلي الإجمالي (GDP Deflator) كالتالي:", options:["(الحقيقي ÷ الاسمي) × 100","(الاسمي ÷ الحقيقي) × 100","(أسعار سنة المقارنة ÷ أسعار سنة الأساس) × 100","(قيمة الدخل ÷ قيمة الإنفاق) × 100","كل ما سبق غير صحيح"], correct:[1], explanation:"GDP Deflator = (الاسمي ÷ الحقيقي) × 100."},
+      {id:5, group:"الاقتصاد الكلي", weight:3.0, text:"من أهم أدوات السياسة النقدية للبنك المركزي الموريتاني لمواجهة التضخم:", options:["خفض الضرائب","رفع سعر الفائدة الرئيسي لجعل الاقتراض أكثر كلفة","زيادة المساعدات الاجتماعية","خفض سعر الفائدة","لا توجد إجابة صحيحة"], correct:[1], explanation:"رفع سعر الفائدة هو الأداة المحورية لكبح التضخم."},
+      {id:6, group:"الاقتصاد الكلي", weight:1.8, text:"يتكون ميزان المدفوعات من ثلاثة حسابات رئيسية:", options:["الحساب الجاري، والرأسمالي والمالي، وصافي الأخطاء والسهو","الميزان التجاري، والخدمات، والتحويلات","الصادرات، والواردات، والاحتياطيات","العمليات الجارية، والقروض، والدعم","لا شيء مما سبق"], correct:[0], explanation:"الحساب الجاري + الرأسمالي والمالي + الأخطاء والسهو."},
+      {id:7, group:"الاقتصاد الكلي", weight:3.0, text:"مراحل الدورة الاقتصادية المتتالية هي:", options:["الازدهار، الذروة، الركود/الانكماش، القاع","الركود، الكساد، التعافي","التضخم، الاستقرار، الانهيار","التوسع المستمر","جميع البدائل خاطئة"], correct:[0], explanation:"Expansion → Peak → Recession → Trough."},
+      {id:8, group:"الاقتصاد الكلي", weight:3.0, text:"السقف الاسترشادي الآمن لنسبة الدين العام إلى الناتج المحلي للدول النامية:", options:["ألا تتجاوز 100%","ألا تتجاوز 70%","ألا تتجاوز 30%","لا حدود","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"يُنصح للدول النامية بألا تتجاوز نسبة الدين 70%."},
+      {id:9, group:"الاقتصاد الكلي", weight:1.8, text:"يوضح منحنى فيليبس في الأمد القصير العلاقة بين:", options:["التضخم والناتج الاسمي","معدل التضخم ومعدل البطالة","سعر الصرف وميزان المدفوعات","عجز الميزانية وحجم الدين","كل ما سبق غير صحيح"], correct:[1], explanation:"علاقة عكسية بين التضخم والبطالة في الأجل القصير."},
+      {id:10, group:"الاقتصاد الكلي", weight:3.0, text:"في اقتصاد مفتوح بضريبة نسبية (T=tY) وميل حدي للاستيراد (m)، مضاعف الإنفاق الحكومي:", options:["Mr = 1/(1 - b + m)","Mr = 1/(1 - b(1 - t) + m)","Mr = -b/(1 - b + bt)","Mr = 1/(1 - b)","لا توجد إجابة صحيحة"], correct:[1], explanation:"Mr = 1/(1 - b(1 - t) + m)."},
+      {id:11, group:"LOLF والمالية العامة", weight:1.2, text:"أين يقع القانون العضوي للمالية (LOLF) في الهرم القانوني؟", options:["أدنى من القوانين العادية","وسطى؛ يعلو الدستور","دستوراً مالياً، أعلى من القوانين العادية وأدنى من الدستور","مرسوم وزاري","لا شيء مما سبق"], correct:[2], explanation:"LOLF هو الدستور المالي، يخضع للدستور ويعلو القوانين العادية."},
+      {id:12, group:"LOLF والمالية العامة", weight:1.8, text:"التحول الأبرز للتعديل القانوني لعام 2026 (LOLF):", options:["العودة لميزانية البنود","الانتقال من ميزانية الوسائل إلى ميزانية البرامج (الأداء)","إلغاء دور البرلمان","قصر الإعداد على مصلحة الضرائب","جميع البدائل خاطئة"], correct:[1], explanation:"الانتقال لميزانية البرامج القائمة على الأداء."},
+      {id:13, group:"LOLF والمالية العامة", weight:1.8, text:"مميزات الاعتمادات التقديرية مقارنة بالتقييدية:", options:["التقديرية سقف أقصى","التقديرية مرنة، والتقييدية (كالرواتب) سقف صارم","التقييدية لا تخضع للتأشيرة","التقديرية للقطاع الخاص","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"التقييدية سقف صارم، والتقديرية مرنة."},
+      {id:14, group:"LOLF والمالية العامة", weight:1.8, text:"يقضي مبدأ تخصيص الاعتمادات بـ:", options:["جواز استخدام أي اعتماد لأي مشروع","كل اعتماد يمنحه البرلمان يُخصص لغرض محدد ولا يصرف في غيره","إيداع الإيرادات في حساب موحد","وضع ميزانية خاصة بكل بلدية","كل ما سبق غير صحيح"], correct:[1], explanation:"مبدأ التخصص: كل اعتماد لغرض محدد."},
+      {id:15, group:"LOLF والمالية العامة", weight:3.0, text:"القيود على التحويل بين البرامج والأبواب:", options:["بموافقة وزير المالية وفي حدود 10%، ويُحظر تحويل التسيير للموظفين أو الاستثمار","تحويل حر داخل الوزارة","تحويل مفتوح يتجاوز 50%","لا يتطلب إجراء تشريعي","لا توجد إجابة صحيحة"], correct:[0], explanation:"التحويل بحد أقصى 10% وبموافقة وزير المالية، مع حظر تحويل التسيير للاستثمار."},
+      {id:16, group:"LOLF والمالية العامة", weight:3.0, text:"الظروف التي تستوجب إعداد قانون مالية تكميلي:", options:["تراجع حاد في إيرادات الدولة","تمويل منحة لموظف واحد","رغبة البلدية في فتح صندوق","كوارث طبيعية أو أزمات طارئة","لا شيء مما سبق"], correct:[0,3], explanation:"لتراجع الإيرادات أو لتمويل نفقات طارئة غير مبرمجة."},
+      {id:17, group:"LOLF والمالية العامة", weight:1.8, text:"يقضي مبدأ توحيد حسابات الخزينة بـ:", options:["جواز فتح حسابات مستقلة","إيداع كافة الإيرادات في حساب واحد مفتوح باسم الخزينة لدى البنك المركزي (TSA)","دمج حسابات الدولة مع الدول المجاورة","عدم السماح بالصرف بالشيكات","جميع البدائل خاطئة"], correct:[1], explanation:"حساب الخزينة الموحد (TSA) يجمع كل الإيرادات والنفقات."},
+      {id:18, group:"LOLF والمالية العامة", weight:1.8, text:"مزايا الشيك الحكومي:", options:["شيك لحامله","غير قابل للرجوع فيه، مضمون الدفع، ويحظى بالأولوية في المقاصة","معفى من توقيع المحاسب","يسقط بعد 48 ساعة","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"غير قابل للإلغاء، مضمون الدفع، وله أولوية."},
+      {id:19, group:"LOLF والمالية العامة", weight:1.8, text:"قانون التصفية ودوره:", options:["فرض ضرائب جديدة","قانون يصادق عليه البرلمان بعد السنة المالية لإقرار النتائج الفعلية بناءً على تدقيق محكمة الحسابات","مرسوم لتصفية الموظفين","خطة لإغلاق البلديات","كل ما سبق غير صحيح"], correct:[1], explanation:"يثبت النتائج الفعلية بعد تدقيق محكمة الحسابات."},
+      {id:20, group:"LOLF والمالية العامة", weight:1.8, text:"المدة القانونية لسقوط حق الدولة في استرداد الأموال المصروفة دون وجه حق:", options:["سنة واحدة","5 سنوات من تاريخ الدفع","لا تسقط أبداً","10 سنوات","لا توجد إجابة صحيحة"], correct:[1], explanation:"يسقط بعد 5 سنوات."},
+      {id:21, group:"الصفقات العمومية", weight:1.2, text:"تقسيم صفقات الدولة حسب موضوعها:", options:["تجارية، إدارية، استشارية","الأشغال، التوريدات، الخدمات، والدراسات والاستشارات","مركزية، بلدية، دولية","استثنائية، دورية، ملغاة","لا شيء مما سبق"], correct:[1], explanation:"أشغال، توريدات، خدمات، ودراسات/استشارات."},
+      {id:22, group:"الصفقات العمومية", weight:1.8, text:"المبادئ الجوهرية لمنظومة الصفقات:", options:["حرية الوصول، المساواة، وشفافية الإجراءات","سرية العروض، تفضيل الأجانب","حصرية التفاوض","وحدة الحساب","جميع البدائل خاطئة"], correct:[0], explanation:"حرية الولوج، المساواة، الشفافية."},
+      {id:23, group:"الصفقات العمومية", weight:1.8, text:"ضمانات نزاهة لجنة الصفقات:", options:["تصريح بالشرف","منع الاتصال خارج الإطار الرسمي وتوقيع المحضر","تسجيل جلسات فتح المظاريف","السماح للرئيس باتخاذ القرارات بمفرده","الإجابتان A و B غير صحيحتين"], correct:[0,1,2], explanation:"تصريح الشرف، منع التواصل الفردي، توثيق المحاضر."},
+      {id:24, group:"الصفقات العمومية", weight:3.0, text:"القاعدة الذهبية للحد الأقصى لتعديل قيمة الصفقة عبر ملحق العقد:", options:["ألا يتجاوز 50%","ألا يتجاوز 20% من القيمة الأصلية، بموافقة لجنة الصفقات وقرار من وزير المالية","يسمح حتى 100%","ألا يتجاوز 5%","كل ما سبق غير صحيح"], correct:[1], explanation:"الحد الأقصى 20% من القيمة الأصلية."},
+      {id:25, group:"الصفقات العمومية", weight:3.0, text:"كيف تُحسب غرامات التأخير المستحقة على المقاول؟", options:["غرامة يومية بين 0.1% و 0.5% من قيمة الجزء غير المنفذ، بحد أقصى 10%","غرامة ثابتة 10,000 أوقية","خصم 50% تلقائياً","غرامات تقديرية يلغيها الوزير","لا توجد إجابة صحيحة"], correct:[0], explanation:"0.1%-0.5% يومياً من الجزء المتأخر، بحد أقصى 10%."},
+      {id:26, group:"الصفقات العمومية", weight:1.8, text:"الشروط القانونية لمنح التسبيقات:", options:["ألا تتجاوز 30% مع تقديم ضمان بنكي بكامل القيمة","تسبيق 50% دون كفالة","التسبيق للأقل سعراً بحد 10%","يُحظر تماماً","لا شيء مما سبق"], correct:[0], explanation:"بحد أقصى 30% مع كفالة بنكية مساوية."},
+      {id:27, group:"الصفقات العمومية", weight:1.8, text:"شروط الإفراج عن الضمان المالي المحتجز (5%):", options:["فوراً عند الاستلام المؤقت","يُحتفظ به طيلة فترة الضمان، ويُفرج بعد زوال التحفظات وتوقيع الاستلام النهائي","بقرار من المقاول","لا يُفرج عنه","جميع البدائل خاطئة"], correct:[1], explanation:"تُحتفظ طيلة سنة الضمان، وتُفرج عند الاستلام النهائي."},
+      {id:28, group:"الصفقات العمومية", weight:3.0, text:"الحالات التي يُسمح فيها بالتفاوض المباشر:", options:["إسناد لشركة يملكها وجهاء","الحالات الطارئة والقوة القاهرة، أو صفقات الأمن","فشل المناقصات مرتين متتاليتين","الصفقات التي تقل عن عتبات الصفقات","الإجابتان A و B غير صحيحتين"], correct:[1,2,3], explanation:"حالات طارئة، فشل مناقصات، صفقات دفاع، ومشتريات بسيطة."},
+      {id:29, group:"الصفقات العمومية", weight:1.8, text:"علامات الاحتيال التي يجب على المفتش التدقيق فيها:", options:["فواتير بأرقام متعاقبة من نفس المورد","أسعار تختلف عن العقد","إدراج بنود غير موجودة في دفتر الشروط","تدوين مواد أقل جودة","كل ما سبق غير صحيح"], correct:[0,1,2], explanation:"فواتير متسلسلة، تباين الأسعار، وبنود وهمية."},
+      {id:30, group:"الصفقات العمومية", weight:1.8, text:"عند حدوث خلافات مالية جسيمة:", options:["تُحال لسلطة تنظيم الصفقات أو المحاكم الإدارية","يُحسم بقرار من رئيس الشركة","تُحال للجمعية الوطنية","تُلغى وتُصادر الأموال","لا توجد إجابة صحيحة"], correct:[0], explanation:"تُحل ودياً أولاً، ثم تُحال للتحكيم أو القضاء الإداري."},
+      {id:31, group:"المالية المحلية", weight:1.2, text:"من يملك سلطة المصادقة النهائية على ميزانية البلدية؟", options:["وزير المالية","سلطة الوصاية (الوالي)، وتُعتبر مصادقاً عليها ضمناً إذا لم تعترض خلال 30 يوماً","رئيس الجمعية الوطنية","البنك المركزي","لا شيء مما سبق"], correct:[1], explanation:"سلطة الوصاية مع مهلة 30 يوم للمصادقة الضمنية."},
+      {id:32, group:"المالية المحلية", weight:1.8, text:"المكونات الأساسية للموارد الذاتية للبلدية:", options:["الضرائب والرسوم المحلية","القروض الدولية","عائدات بيع الدومين العام","إعانات صندوق التضامن","جميع البدائل خاطئة"], correct:[0], explanation:"الضرائب والرسوم المحلية."},
+      {id:33, group:"المالية المحلية", weight:1.8, text:"الحدود القانونية على نفقات التسيير والاستثمار:", options:["صرف إيرادات الاستثمار للرواتب","تحقيق توازن، ويُحظر استخدام القروض للنفقات الاستهلاكية، بل تُخصص للاستثمار","نسبة تسيير 10% فقط","يحق للعمدة التحويل بقرار بلدي","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"القروض فقط للاستثمار المنتج."},
+      {id:34, group:"المالية المحلية", weight:3.0, text:"الهيئات الرسمية المكلفة برقابة مالية البلديات:", options:["وزارة الداخلية (الوصاية)","المفتشية العامة للمالية وتفتيش الخزينة","ديوان المحاسبة","لجان شعبية","كل ما سبق غير صحيح"], correct:[0,1,2], explanation:"وصاية إدارية + IGF/DGTCP + ديوان المحاسبة."},
+      {id:35, group:"المالية المحلية", weight:3.0, text:"شروط السماح للبلديات بالاقتراض:", options:["ترخيص وموافقة مسبقة من الوصاية ووزارة المالية","ألا يتجاوز سقف أقساط السداد 30% من الإيرادات العادية","أن يكون القرض لمشروع استثماري منتج","يسمح بالاقتراض المفتوح","لا توجد إجابة صحيحة"], correct:[0,1,2], explanation:"موافقة مسبقة، سقف 30%، وتخصيص للاستثمار."},
+      {id:36, group:"المالية المحلية", weight:1.8, text:"عند عجز ميزانية البلدية عن التوازن:", options:["تجميد الصلاحيات وحل البلدية","إعلان الوصاية المالية المشددة وتعيين مندوب خاص","تحمل وزارة المالية للديون","إغلاق مقر البلدية","لا شيء مما سبق"], correct:[1], explanation:"الوصاية المالية المشددة مع تعيين مندوب خاص."},
+      {id:37, group:"المالية المحلية", weight:3.0, text:"في الحالات القصوى لتعثر البلديات وتورط مجالسها:", options:["حل المجلس بمرسوم من مجلس الوزراء","تعيين لجنة تسيير مؤقتة","قيام العمدة بإلغاء الانتخابات","إلزام الأعضاء المتورطين بالتعويض وإحالتهم للقضاء","جميع البدائل خاطئة"], correct:[0,1,3], explanation:"حل المجلس، لجنة تسيير، ومتابعة قضائية."},
+      {id:38, group:"المالية المحلية", weight:1.8, text:"التحويلات المالية الحكومية للبلديات تخضع لرقابة:", options:["المحاسب العمومي","الإدارة العامة للخزينة (DGTCP) ومراقب الخزينة","لجان تفتيش البنك التجاري","لا تخضع لرقابة","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"DGTCP ومراقب الخزينة يراقبان المسار."},
+      {id:39, group:"المالية المحلية", weight:1.8, text:"الحساب الإداري للبلدية ومن يراجعه:", options:["كشف حساب تفرضه البنوك","وثيقة سنوية يعدها العمدة، تُعرض على المجلس قبل رفعها للوصاية وديوان المحاسبة","سجل سري","تقرير من المحاسب دون موافقة المجلس","كل ما سبق غير صحيح"], correct:[1], explanation:"وثيقة العمدة السنوية تعرض على المجلس ثم الوصاية وديوان المحاسبة."},
+      {id:40, group:"المالية المحلية", weight:1.8, text:"تهدف إصلاحات قانون المالية المحلية إلى:", options:["زيادة حصة الإيرادات للجماعات لتصل إلى 30% بحلول 2030","تقليص صلاحيات المجالس","إلغاء الضرائب المحلية","رقمنة الإدارة المالية المحلية","لا توجد إجابة صحيحة"], correct:[0,3], explanation:"ترفيع الحصة إلى 30% ورقمنة الإدارة."},
+      {id:41, group:"القانون الإداري", weight:1.2, text:"الخريطة الإدارية للدولة الموريتانية تتكون من:", options:["15 ولاية، 60 مقاطعة","13 ولاية، 53 مقاطعة، 32 مركزاً إدارياً، بالإضافة للبلديات","10 ولايات فقط","5 أقاليم","لا شيء مما سبق"], correct:[1], explanation:"13 ولاية، 53 مقاطعة، 32 مركزاً إدارياً، والبلديات."},
+      {id:42, group:"القانون الإداري", weight:1.8, text:"الفرق بين اللامركزية واللا تمركز:", options:["اللامركزية تركيز السلطة","اللامركزية منح الشخصية المعنوية للجماعات المنتخبة، واللا تمركز توزيع صلاحيات الإدارة المركزية على ممثلين معينين","اللامركزية للعسكرية","لا فرق","جميع البدائل خاطئة"], correct:[1], explanation:"اللامركزية: استقلالية الجماعات. اللا تمركز: تفويض داخل الإدارة المركزية."},
+      {id:43, group:"القانون الإداري", weight:1.8, text:"خصائص أملاك الدولة في الدومين العام:", options:["عدم جواز بيعها","عدم سقوط الملكية مهما طال الزمن","عدم جواز الحجز عليها","خضوعها للقانون الخاص","الإجابتان A و B غير صحيحتين"], correct:[0,1,2], explanation:"غير قابل للتصرف، ولا للتقادم، ولا للحجز."},
+      {id:44, group:"القانون الإداري", weight:3.0, text:"الأركان الأساسية لصحة القرار الإداري:", options:["الاختصاص، الشكل، المحل، السبب، والغاية","التوقيع، الختم، الموافقة","النشر خلال 24 ساعة","موافقة المستشارين بالإجماع","كل ما سبق غير صحيح"], correct:[0], explanation:"الاختصاص، الشكل، المحل، السبب، الغاية."},
+      {id:45, group:"القانون الإداري", weight:1.8, text:"عناصر النظام العام التي يشملها الضبط الإداري:", options:["الأمن العام","الصحة العامة","السكينة العامة","الضبط القضائي","لا توجد إجابة صحيحة"], correct:[0,1,2], explanation:"الأمن، الصحة، السكينة."},
+      {id:46, group:"القانون الإداري", weight:1.8, text:"المبادئ الأساسية للوظيفة العمومية:", options:["المساواة في الولوج","التدرج الهرمي","الحياد التام","استمرارية الخدمة","لا شيء مما سبق"], correct:[0,1,2,3], explanation:"المساواة، التدرج، الحياد، الاستمرارية."},
+      {id:47, group:"القانون الإداري", weight:1.8, text:"الواجبات والمحظورات على الموظف:", options:["الالتزام بالسر المهني","تجنب تضارب المصالح","احترام أوقات العمل","جواز قبول الهدايا","جميع البدائل خاطئة"], correct:[0,1,2], explanation:"السر المهني، تجنب تضارب المصالح، احترام التسلسل. يُحظر قبول الهدايا."},
+      {id:48, group:"القانون الإداري", weight:3.0, text:"عقوبات الدرجة الثالثة (القصوى):", options:["الإنذار","الحرمان من الترقية","العزل من الوظيفة","الإحالة القسرية للتقاعد","الإجابتان A و B غير صحيحتين"], correct:[2,3], explanation:"العزل والإحالة القسرية للتقاعد."},
+      {id:49, group:"القانون الإداري", weight:1.8, text:"الفارق في المسؤولية بين الآمر بالصرف والمحاسب:", options:["الآمر يتحمل المالية","المحاسب يتحمل شخصياً ومالياً مسؤولية حفظ الأموال وصحة الصرف، والآمر يتحمل الإدارية عن قانونية الالتزام","كلاهما يشتركان","المحاسب لا يسأل إلا جنائياً","كل ما سبق غير صحيح"], correct:[1], explanation:"الفصل الصارم: المحاسب مالياً، والآمر إدارياً."},
+      {id:50, group:"القانون الإداري", weight:1.8, text:"الطعن في اللوائح الانتخابية يتم أمام:", options:["وزير الداخلية","المحكمة العليا في غضون 8 أيام","لجان التحكيم","مجلس الشيوخ","لا توجد إجابة صحيحة"], correct:[1], explanation:"أمام الغرفة الإدارية بالمحكمة العليا خلال 8 أيام."},
+      {id:51, group:"دور مفتش الخزينة", weight:1.2, text:"علاقة مفتش الخزينة بالجهات:", options:["رئاسة هرمية","علاقة تفتيش ورقابة واستقلالية فنية لرفع تقارير لـ DGTCP","علاقة محاسبية تضامنية","علاقة تمثيل برلماني","لا شيء مما سبق"], correct:[1], explanation:"علاقة تفتيش ورقابة مستقلة فنياً."},
+      {id:52, group:"دور مفتش الخزينة", weight:1.8, text:"خطوات فحص الصندوق المفاجئ:", options:["طلب فتح الخزنة فوراً وإجراء جرد فعلي","إخطار المحاسب قبل أسبوعين","الاكتفاء بالتدقيق المكتبي","فرز النقدية وتحرير محضر جرد فوري","جميع البدائل خاطئة"], correct:[0,3], explanation:"فتح الخزنة فوراً، جرد مادي، محضر موقع."},
+      {id:53, group:"دور مفتش الخزينة", weight:1.8, text:"قواعد مسك الدفاتر المحاسبية:", options:["مرقم وموقع ومختوم","حظر الفراغات وشطبها بخط","منع الكشط وتصحيح الأخطاء بقيد عكسي","جواز استخدام الحبر الماحي","الإجابتان A و B غير صحيحتين"], correct:[0,1,2], explanation:"الترقيم، منع الفراغات والكشط، التصحيح بقيد عكسي."},
+      {id:54, group:"دور مفتش الخزينة", weight:3.0, text:"المستندات الإلزامية لملف نفقة عمومية:", options:["أمر بالدفع والصرف","الفاتورة الأصلية ومحضر الاستلام","عقد التوريد وشهادة المطابقة","قرار الهبة وجواز السفر","كل ما سبق غير صحيح"], correct:[0,1,2], explanation:"أمر الصرف، الفاتورة، محضر الاستلام، العقد، وشهادة المطابقة."},
+      {id:55, group:"دور مفتش الخزينة", weight:1.8, text:"التمييز بين الخطأ المحاسبي والمخالفة المالية:", options:["الخطأ سهو غير متعمد يُصحح بقيد عكسي، والمخالفة عمل متعمد يخالف اللوائح","المخالفة دائماً خطأ بسيط","الخطأ يستوجب الإحالة الفورية","لا فرق","لا توجد إجابة صحيحة"], correct:[0], explanation:"الخطأ: سهو. المخالفة: عمل متعمد."},
+      {id:56, group:"دور مفتش الخزينة", weight:3.0, text:"صرف 2 مليون أوقية كسلفة دون ترخيص:", options:["سلفة مهام مسموحة","مخالفة جسيمة تمثل شبهة اختلاس","إجراء قانوني إذا رد الموظف","خطأ تافه","لا شيء مما سبق"], correct:[1], explanation:"السلف غير المصرح بها مخالفة جسيمة."},
+      {id:57, group:"دور مفتش الخزينة", weight:1.8, text:"التقرير الخاص الذي يعده المفتش:", options:["تقرير سنوي شامل","تقرير عاجل في الحالات الاستثنائية يُرفع لوزير المالية","تقرير شهري عادي","مذكرة فنية","جميع البدائل خاطئة"], correct:[1], explanation:"وثيقة طارئة للحالات الاستثنائية."},
+      {id:58, group:"دور مفتش الخزينة", weight:1.8, text:"الحدود القانونية للتنسيق بين مفتشية الخزينة و IGF:", options:["تبعية كاملة لـ IGF","علاقة تنسيق وتكامل دون تبعية؛ تُحال الملفات الجسيمة لـ IGF","منع تبادل المعلومات","IGF للرقابة البعدية فقط","الإجابتان A و B غير صحيحتين"], correct:[1], explanation:"تنسيق وتكامل دون تبعية."},
+      {id:59, group:"دور مفتش الخزينة", weight:1.8, text:"متطلبات تسليم المهام:", options:["جرد فعلي كامل بحضور المفتش","تحرير محضر تسليم من ثلاث نسخ","انتقال المسؤولية للمحاسب الجديد دون أثر رجعي","إقرار المحاسب الجديد بتحمل أخطاء السابق","كل ما سبق غير صحيح"], correct:[0,1,2], explanation:"جرد مادي، محضر ثلاثي، انتقال المسؤولية."},
+      {id:60, group:"دور مفتش الخزينة", weight:1.8, text:"للحصول على شهادة الإبراء (Quitus):", options:["عريضة لوزير المالية","صدور قرار إبراء من ديوان المحاسبة بعد مراجعة الحساب","موافقة شفهية","سقوط المسؤولية بعد 24 ساعة","لا توجد إجابة صحيحة"], correct:[1], explanation:"الإبراء يصدر من ديوان المحاسبة."}
+    ]
+  },
+  v3: {
+    title: "مسابقة محاكاة متقدمة (v3) - مفتش خزينة رئيسي",
+    subtitle: "تركيز على التطبيق العمقي، LOLF 2026، المحاسبة العمومية، والرقابة الميدانية",
+    questions: [
+      {id:1, group:"الاقتصاد الكلي والمالية الدولية", weight:3.0, text:"في نموذج IS-LM لاقتصاد مفتوح تحت سعر صرف مرن وحركية كاملة لرأس المال، كيف تؤثر سياسة مالية توسعية على الدخل وسعر الصرف؟", options:["يرتفع الدخل وتنخفض العملة","يظل الدخل ثابتاً، بينما ترتفع قيمة العملة المحلية","ينخفض الدخل وتتدهور الصادرات","يرتفع الدخل وترتفع العملة","ينهار التوازن النقدي"], correct:[1], explanation:"في سعر صرف مرن، السياسة المالية التوسعية ترفع الفائدة، فيتدفق رأس المال، وترتفع العملة، مما يلغي أثر التوسع على الدخل."},
+      {id:2, group:"الاقتصاد الكلي والمالية الدولية", weight:1.8, text:"وفقاً لنظرية تعادل القوة الشرائية المطلقة، إذا كان سعر سلة السلع في موريتانيا 1500 أوقية، وفي منطقة اليورو 30 يورو، ما هو سعر الصرف المتوازن؟", options:["50 أوقية لكل يورو","0.02 أوقية لكل يورو","45 أوقية لكل يورو","20 أوقية لكل يورو","لا يمكن حسابه"], correct:[0], explanation:"سعر الصرف = 1500 / 30 = 50 أوقية لكل يورو."},
+      {id:3, group:"الاقتصاد الكلي والمالية الدولية", weight:1.8, text:"كيف يتم تصنيف 'مشتريات المقيمين للسندات الأجنبية' و'الاستثمارات الأجنبية المباشرة' في ميزان المدفوعات؟", options:["في الحساب الجاري وحساب رأس المال","في 'الحساب المالي' تحت بند استثمارات المحفظة والاستثمار المباشر","في ميزان الخدمات والحساب الرأسمالي","في حساب الأخطاء والسهو","لا شيء مما سبق"], correct:[1], explanation:"تسجل تدفقات الأصول والاستثمارات في 'الحساب المالي'."},
+      {id:4, group:"الاقتصاد الكلي والمالية الدولية", weight:3.0, text:"إذا كان: C = 200 + 0.75Yd, T = 0.2Y, I = 150 - 1000i, G = 300, XN = 100 - 0.1Y. ما هي دالة منحنى IS؟", options:["Y = 1500 - 2000i","Y = 1300 - 2000i","Y = 1200 - 1600i","Y = 1000 - 1500i","لا تتيح المعادلات تحديدها"], correct:[0], explanation:"Y = C + I + G + XN => Y = 200 + 0.75(Y - 0.2Y) + 150 - 1000i + 300 + 100 - 0.1Y => Y = 750 + 0.5Y - 1000i => 0.5Y = 750 - 1000i => Y = 1500 - 2000i."},
+      {id:5, group:"الاقتصاد الكلي والمالية الدولية", weight:1.2, text:"بموجب قانون أوكن، ما هي العلاقة التجريبية بين الدخل والبطالة؟", options:["زيادة نمو الناتج الحقيقي بمعدل يفوق النمو الكامن تؤدي لخفض البطالة","ارتفاع التضخم يؤدي لتراجع البطالة الهيكلية","ارتفاع البطالة يقلل العجز الميزانياتي","علاقة طردية بين الفائدة والتشغيل","علاقة عكسية غير خطية تحكمها الضرائب"], correct:[0], explanation:"قانون أوكن يربط نمو الناتج فوق المستوى الكامن بخفض معدلات البطالة."},
+      {id:6, group:"الاقتصاد الكلي والمالية الدولية", weight:1.8, text:"ماذا يقصد بـ 'الرصيد الأولي للميزانية' (Primary Fiscal Balance)؟", options:["الإيرادات الجارية مطروحاً منها النفقات الجارية دون الاستثمار","الفرق بين الإيرادات والنفقات الإجمالية بعد استبعاد نفقات فوائد الدين العام","الفائض الموجه لسداد أصل القروض","الرصيد المحقق في الربع الأول","الرصيد الفعلي دون احتساب المنح"], correct:[1], explanation:"هو الرصيد بعد استبعاد خدمة الدين (فوائد الدين)، لقياس الجهد المالي الحقيقي."},
+      {id:7, group:"الاقتصاد الكلي والمالية الدولية", weight:3.0, text:"في ظل 'مصيدة السيولة' (منحنى LM أفقي تماماً)، كيف تؤثر السياسات؟", options:["السياسة النقدية فعالة قصوى، والمالية تفقد فعاليتها","تفقد السياسة النقدية فعاليتها بالكامل، بينما تكون السياسة المالية في أقصى درجات فعاليتها","تفقد السياستان الفعالية","يرتفع سعر الفائدة بشكل حاد","ينتقل خط IS لليسار"], correct:[1], explanation:"في مصيدة السيولة، ضخ النقود لا يخفض الفائدة، لكن الإنفاق الحكومي يرفع الدخل دون أثر مزاحمة."},
+      {id:8, group:"الاقتصاد الكلي والمالية الدولية", weight:1.2, text:"وفقاً للنظرية الكمية للنقود (MV = PY)، ما أثر زيادة عرض النقود 15% مع ثبات V و Y؟", options:["انخفاض الأسعار 15%","ارتفاع مستوى الأسعار العام (التضخم) بنسبة 15% بالضبط","انخفاض معدل الفائدة الاسمي","زيادة الناتج الحقيقي 15%","تراجع الاحتياطيات"], correct:[1], explanation:"الحياد النقدي: زيادة M تنعكس كلياً على P بنسبة متساوية."},
+      {id:9, group:"الاقتصاد الكلي والمالية الدولية", weight:1.8, text:"ما هو مفهوم 'معدل البطالة الطبيعي' (NAIRU)؟", options:["معدل البطالة الذي تكون عنده الفائدة مساوية لنمو الناتج","معدل البطالة التوازني طويل الأجل الذي يستقر عنده التضخم دون تسارع","الحد الأدنى للبطالة الموسمية","المعدل عند زيادة الحد الأدنى للأجور 10%","B و D معاً"], correct:[1], explanation:"NAIRU هو معدل البطالة الذي لا يتسارع عنده التضخم."},
+      {id:10, group:"الاقتصاد الكلي والمالية الدولية", weight:1.2, text:"تحت تأثير 'أثر الانحراف الضريبي' (Fiscal Drag) الناتج عن التضخم، كيف يتأثر المكلفون؟", options:["تنخفض التزاماتهم الضريبية","ينتقلون تلقائياً لشرائح ضريبية أعلى نتيجة ارتفاع الأجور الاسمية، مما يرفع العبء الضريبي الحقيقي","يُعفون من الضريبة","ترتفع موارد البلديات","يتقلص عجز الميزانية"], correct:[1], explanation:"التضخم يرفع الأجور الاسمية فيدفع المكلفين لشرائح أعلى دون زيادة حقيقية في دخلهم."},
+      {id:11, group:"LOLF وقواعد الموازنة", weight:3.0, text:"بموجب LOLF، ما هي الوثيقة الحتمية التي ترفق بمشروع قانون المالية لربط المخصصات بالأداء؟", options:["تقرير التقييم المالي المشترك","'خطط الأداء السنوية' (PAP) التي تحدد الأهداف والمؤشرات، وتتبع بـ 'تقارير الأداء' (RAP)","شهادة براءة الذمة","محضر تدقيق ديوان المحاسبة","جداول تسوية الفروق"], correct:[1], explanation:"خطط الأداء (PAP) وتقارير الأداء (RAP) هما جوهر ميزانية البرامج."},
+      {id:12, group:"LOLF وقواعد الموازنة", weight:1.8, text:"شروط اللجوء لفتح اعتمادات استثنائية بـ 'مرسوم سلف' دون موافقة مسبقة من البرلمان:", options:["ألا تتجاوز 5% من اعتمادات قانون المالية الأصلي، ووجوب عرضها على البرلمان في أقرب قانون معدل","موافقة محكمة الحسابات المسبقة","اقتصارها على نفقات الاستثمار","ألا يتجاوز المبلغ 1% من الناتج المحلي","A و C معاً"], correct:[0], explanation:"سقف 5% من الاعتمادات الأصلية، مع عرضها لاحقاً على البرلمان."},
+      {id:13, group:"LOLF وقواعد الموازنة", weight:3.0, text:"القاعدة الصارمة بخصوص ترحيل الاعتمادات الميزانياتية:", options:["ترحيل كافة الاعتمادات تلقائياً","يُحظر ترحيل اعتمادات نفقات الموظفين (الباب الأول)، ويُرخص ترحيل اعتمادات الاستثمار بحدود وبمقرر من وزير المالية","الترحيل من صلاحيات الآمرين الثانويين","تلغى كافة الاعتمادات","يتطلب مرسوم تسيير مؤقت"], correct:[1], explanation:"حظر ترحيل الرواتب، والسماح بترحيل الاستثمار بشروط ومقرر وزاري."},
+      {id:14, group:"LOLF وقواعد الموازنة", weight:1.8, text:"التصنيف الهرمي الصحيح لمستويات تقسيم نفقات الدولة:", options:["الأبواب (الوزارات)، ثم البرامج، ثم الأقسام، ثم البنود","الفصول، ثم المواد، ثم الفقرات","ميزانية التسيير، ثم الاستثمار","النفقات الجارية، ثم التجهيز","البرامج، ثم الأبواب، ثم البنود"], correct:[0], explanation:"الأبواب (وزارات) -> البرامج -> الأقسام -> البنود (طبيعة النفقة)."},
+      {id:15, group:"LOLF وقواعد الموازنة", weight:1.2, text:"ما هو 'إطار النفقات متوسط المدى' (MTEF)؟", options:["وثيقة سنوية بعد إغلاق الدفاتر","أداة تخطيط مالي متعدد السنوات (3 سنوات) لربط المخصصات بالاستراتيجيات القطاعية","سجل يقيد فيه المحاسب نفقات الاستثمار","جدول دوري من البنك المركزي","لا توجد إجابة صحيحة"], correct:[1], explanation:"MTEF هو تخطيط لـ 3 سنوات لضمان اتساق الميزانية مع الاستراتيجيات."},
+      {id:16, group:"LOLF وقواعد الموازنة", weight:1.8, text:"المعنى الدقيق لمبدأ 'عدم تخصيص الإيرادات' (Non-affectation des recettes):", options:["لا يجوز للآمر تحديد طبيعة النفقة قبل المصادقة","يجب أن تصب كافة إيرادات الدولة في صندوق مشترك (الخزينة) لتغطية النفقات دون تخصيص إيراد معين لنفقة معينة","منع تحصيل الضرائب المحلية","منع تفويض الاعتمادات","B و D غير صحيحتين"], correct:[1], explanation:"جميع الإيرادات تذهب للخزينة الموحدة لتمويل جميع النفقات حسب الأولويات."},
+      {id:17, group:"LOLF وقواعد الموازنة", weight:3.0, text:"الفرق الجوهري بين 'رخص الالتزام' (AE) و'اعتمادات الدفع' (CP):", options:["AE تمثل الحد الأقصى للالتزام لعمليات متعددة السنوات، بينما CP تمثل السقف المالي المسموح بصرفه فعلياً خلال السنة الجارية","AE بقرار تنظيمي، وCP بقانون معدل","AE للتسيير، وCP للاستثمار","الرقابة على AE للمراقب المالي، وعلى CP لمحكمة الحسابات","لا توجد فروق"], correct:[0], explanation:"AE للالتزام القانوني متعدد السنوات، CP للسقف النقدي للصرف في السنة الجارية."},
+      {id:18, group:"LOLF وقواعد الموازنة", weight:1.8, text:"دور البرلمان في حال تعذر إقرار مشروع قانون المالية قبل 31 ديسمبر:", options:["تتوقف المرافق عن العمل","يُرخص للحكومة بفتح اعتمادات مؤقتة (1/12 شهرياً) بمرسوم لتسيير المرافق الأساسية","يتولى رئيس الجمهورية إقرار الميزانية بأمر قانوني","يُحال الملف للبنك المركزي","B و C معاً"], correct:[4], explanation:"يُسمح بـ 1/12 شهرياً بمرسوم، أو اللجوء لأوامر قانونية (Ordonnances) لضمان استمرارية الدولة."},
+      {id:19, group:"LOLF وقواعد الموازنة", weight:1.2, text:"ما هو 'الرصيد الميزانياتي الهيكلي'؟", options:["الرصيد بعد جرد الخزنة","رصيد الميزانية الفعلي بعد استبعاد تأثيرات الدورة الاقتصادية والصدمات الطارئة، لتقييم الاتجاه المستدام","الفرق بين الضرائب المباشرة وغير المباشرة","الرصيد المخصص للاستثمار","لا شيء مما سبق"], correct:[1], explanation:"يستبعد التقلبات الدورية ليعكس الصحة الحقيقية والمستدامة للسياسة المالية."},
+      {id:20, group:"LOLF وقواعد الموازنة", weight:1.8, text:"الأثر القانوني المترتب على إقرار البرلمان لـ 'قانون التسوية':", options:["إبراء ذمة الحكومة سياسياً، وتعديل وتثبيت النتائج المحققة بصفة نهائية","منح المحاسبين براءة ذمة جماعية","إلغاء الالتزامات المالية","معاقبة الآمرين المتجاوزين","A و B معاً"], correct:[0], explanation:"يثبت النتائج نهائياً ويبرئ الذمة السياسية للحكومة عن تنفيذ الميزانية."},
+      {id:21, group:"المحاسبة العمومية والرقابة", weight:3.0, text:"إذا اكتشف المحاسب العمومي نقصاً في مستند ثبوتي بملف نفقة، ما هو القرار السليم؟", options:["الصرف فوراً مع تحفظ","يلتزم بـ 'رفض الدفع' المسبب كتابياً خلال أجل أقصاه 15 يوماً، وإعادة الملف للآمر بالصرف","إبلاغ المراقب المالي فوراً","إحالة الملف لمحكمة الحسابات","لا توجد آجال محددة"], correct:[1], explanation:"رفض الدفع المسبب خلال 15 يوماً وإعادة الملف للآمر بالصرف هو الإجراء القانوني."},
+      {id:22, group:"المحاسبة العمومية والرقابة", weight:1.8, text:"كيف تنظم القواعد مسألة 'عجز الصندوق' المكتشف أثناء تفتيش مفاجئ؟", options:["مهلة 90 يوماً للتحقق","يلتزم المحاسب شخصياً ومالياً بتغطية وتسديد قيمة العجز فوراً من ماله الخاص","تعويض العجز من صندوق التضامن","المسؤولية مناصفة بين الآمر والمحاسب","B و D معاً"], correct:[1], explanation:"المسؤولية الشخصية والمالية للمحاسب تلزمه بتغطية العجز من ماله الخاص فوراً."},
+      {id:23, group:"المحاسبة العمومية والرقابة", weight:3.0, text:"الحالات الحصرية التي يُحظر فيها على المحاسب الامتثال لأمر التسخير:", options:["انعدام الاعتمادات، انعدام الخدمة المؤداة، انعدام تأشيرة المراقب المالي، وجود شبهة تزوير","عدم مطابقة الاسم، تأخر الصرف، انعدام ترحيل","خلو الملف من ترخيص المقاصة","انتهاء السنة المالية","لا توجد حالات حصرية"], correct:[0], explanation:"هذه العيوب الأربعة الجسيمة تلزم المحاسب بالرفض المطلق حتى مع وجود أمر تسخير."},
+      {id:24, group:"المحاسبة العمومية والرقابة", weight:1.8, text:"الإجراء الإلزامي لضبط ومطابقة حسابات الخزينة مع البنك المركزي:", options:["جرد مادي كل ثلاثة أشهر","إعداد كشوف التوفيق البنكي بصفة دورية خلال أجل أقصاه 30 يوماً","ترحيل السلف قبل 15 مايو","حظر الصرف بشيكات تتجاوز 10 ملايين","B و C معاً"], correct:[1], explanation:"إعداد التوفيق البنكي بانتظام خلال 30 يوماً كحد أقصى."},
+      {id:25, group:"المحاسبة العمومية والرقابة", weight:1.2, text:"الفرق بين 'سلف التسوية' و'العهود المؤقتة':", options:["سلف التسوية للرواتب، والعهود للتجهيز","سلف التسوية عمليات صرف مؤقتة تستوجب التسوية خلال آجال محددة، بينما العهود وكالات مالية دائمة ومحددة السقوف","العهود تخضع لرقابة المراقب، والسلف لا","السلف لديوان المحاسبة، والعهود لمفتشية الخزينة","لا توجد فروق"], correct:[1], explanation:"سلف التسوية مؤقتة وتستوجب تسوية، العهود هياكل دائمة منظمة."},
+      {id:26, group:"المحاسبة العمومية والرقابة", weight:1.8, text:"الالتزام اليومي الإلزامي لأمناء الصناديق:", options:["مراجعة عقود التوظيف","إجراء جرد مادي ومطابقة تامة يومية للنقدية الفعلية مع رصيد دفتر الصندوق وتحرير محضر موقع","تعديل تكييف النفقات","التنسيق مع لجان الصفقات","إعداد جدول استهلاك الدين"], correct:[1], explanation:"الجرد والمطابقة اليومية للنقدية مع الدفتر اليومي وتحرير محضر."},
+      {id:27, group:"المحاسبة العمومية والرقابة", weight:3.0, text:"التكييف القانوني لـ 'المحاسب الفعلي' والجزاءات:", options:["هو المحاسب المعين الذي أهمل تقديم حساباته","هو كل شخص يتداول أو يصرف أموالاً عمومية دون تعيين رسمي ومرخص ومؤدي لليمين","يخضع لذات التزامات ومسؤوليات المحاسب الرسمي ويتعرض لعقوبات مشددة","يُعفى إذا ثبتت حسن نيته","B و C معاً"], correct:[4], explanation:"المحاسب الفعلي هو من يتصرف في المال العام دون صفة رسمية، ويخضع لنفس المسؤوليات والعقوبات."},
+      {id:28, group:"المحاسبة العمومية والرقابة", weight:1.8, text:"الشرط الحتمي لتسليم العهدة بين المحاسب القديم والجديد:", options:["موافقة العمدة وشهادة الوالي","إجراء جرد مادي شامل بحضور ممثل عن DGTCP وتحرير محضر تسليم ثلاثي النسخ موقع","صدور حكم قضائي مسبق","سداد كافة العجوزات","B و D معاً"], correct:[1], explanation:"الجرد المادي الشامل بحضور المفتش وتحرير محضر ثلاثي هو الشرط الحتمي."},
+      {id:29, group:"المحاسبة العمومية والرقابة", weight:1.2, text:"كيف تنظم المقاصة المالية للديون بين الدولة والمكلفين؟", options:["تجوز تلقائياً بقرار من المحاسب","تُحظر حظراً تاماً","تجوز شريطة الحصول على موافقة مسبقة وصريحة من وزير المالية","تتم بقرار من الوالي","تقتصر على الديون الخارجية"], correct:[2], explanation:"المقاصة تجوز فقط بموافقة مسبقة وصريحة من وزير المالية."},
+      {id:30, group:"المحاسبة العمومية والرقابة", weight:1.8, text:"التاريخ النهائي الحتمي لإرسال الحساب السنوي العام لمحكمة الحسابات:", options:["31 مارس","15 مايو","30 يونيو من السنة المالية الموالية كأجل أقصى","31 ديسمبر","لا توجد آجال محددة"], correct:[2], explanation:"30 يونيو هو الأجل الأقصى والحتمي لتقديم الحساب الختامي الموحد."},
+      {id:31, group:"الصفقات العمومية", weight:1.8, text:"الفرق بين 'الاستلام المؤقت' و'الاستلام النهائي':", options:["المؤقت عند الانتهاء فنياً، والنهايي بعد مرور فترة الضمان والتحقق من خلو المبنى من العيوب","المؤقت يسمح بإفراج كفالة 5%","المؤقت من صلاحيات العمدة، والنهايي لديوان المحاسبة","المؤقت يعفي من الضمان العشري","A و C معاً"], correct:[0], explanation:"الاستلام النهائي يكون بعد فترة الضمان (سنة عادة) والتحقق من الصيانة."},
+      {id:32, group:"الصفقات العمومية", weight:3.0, text:"الضوابط الرقابية الصارمة لمنح 'التسبيقات' للمقاولين:", options:["لا يجوز منح تسبيق دون ضمان بنكي يعادل 100% من قيمة التسبيق","تخضع لسقف محدد (عادة 30% من قيمة الصفقة)","يتم استردادها تدريجياً من المستخلصات الدورية","يحظر منحها لصفقات الاستشارات التي تفوق العتبة","جميع البدائل السابقة تمثل ضوابط إلزامية"], correct:[4], explanation:"جميع الخيارات A, B, C, D هي ضوابط رقابية إلزامية لتشريع الصفقات."},
+      {id:33, group:"الصفقات العمومية", weight:1.8, text:"التكييف الرقابي لـ 'التجزئة غير القانونية للصفقة' وكيف يكشفها المفتش:", options:["تقسيم صفقة تتجاوز العتبة لعدة صفقات صغيرة بالتراضي لتفادي الرقابة","يكتشفه المفتش بمقارنة تواريخ الصرف والعقود مع نفس المقاول خلال فترة وجيزة","تقسيم المشروع لضمان الجودة","توزيع العمل على المصالح","A و B معاً"], correct:[4], explanation:"هي تفادي للرقابة بتقسيم القيمة، ويُكشف بمطابقة الفواتير والعقود المتقاربة لنفس المورد."},
+      {id:34, group:"الصفقات العمومية", weight:3.0, text:"وجود 'ملحق تعديلي' للعقد بقيمة تعادل 25% من القيمة الإجمالية:", options:["صحيح بمجرد التوقيع","باطل ومرفوض؛ لأن القاعدة الذهبية تمنع تجاوز 20% من القيمة الأصلية","أي زيادة تتجاوز 20% تعتبر 'صفقة جديدة' تستوجب مناقصة مفتوحة","يلتزم المفتش برفض الصرف وتحرير محضر مخالفة","B و C و D معاً صحيحة"], correct:[4], explanation:"تجاوز 20% باطل، ويستوجب صفقة جديدة، ويلتزم المفتش برفض الصرف وتحرير مخالفة."},
+      {id:35, group:"الصفقات العمومية", weight:1.2, text:"طريقة الشراء العام التي تعتبر 'الأصل العام والإلزامي':", options:["الشراء بالتراضي","المناقصة المفتوحة كآلية علنية تضمن الشفافية وتكافؤ الفرص","الاستشارات الودية","الشراء بطلب فواتير بسيطة","لا توجد أفضلية"], correct:[1], explanation:"المناقصة المفتوحة هي الأصل لضمان الشفافية والمساواة."},
+      {id:36, group:"الصفقات العمومية", weight:1.8, text:"نسبة 'ضمان حسن التنفيذ' وكيف يتم الإفراج عنه:", options:["5% من القيمة الإجمالية، ويُحجز، ولا يُفرج عنه إلا بعد توقيع 'محضر الاستلام النهائي' وخلو المشروع من تحفظات","10% ويُفرج عند الاستلام المؤقت","تقتصر على التوريدات","تحدد ودياً بقرار من الوالي","A و C معاً"], correct:[0], explanation:"5% تُحجز ولا تُفرج إلا بعد الاستلام النهائي وزوال التحفظات."},
+      {id:37, group:"الصفقات العمومية", weight:3.0, text:"علامات المؤشرات الاحتيالية (Fraud Indicators) في الفواتير:", options:["فواتير بأرقام متسلسلة من موردين مختلفين لذات المناقصة","كشط أو تلاعب في الأسعار الوحدوية","إدراج بنود لم ترد بدفتر الشروط","مستندات مكررة تحمل أرقاماً مطابقة لعمليات سبق سدادها","جميع البدائل السابقة تمثل مؤشرات احتيالية جسيمة"], correct:[4], explanation:"جميع هذه العلامات تستدعي إيقاف الصرف وتحرير تقرير خاص."},
+      {id:38, group:"الصفقات العمومية", weight:1.2, text:"كيف تُحسب 'غرامات التأخير' وما هو السقف الأقصى؟", options:["نسبة من القيمة الكلية دون حد أقصى","يومياً كنسبة من قيمة الجزء المتأخر (بين 1/1000 و1/5000)","السقف الأقصى القانوني لا يتجاوز 10% من قيمة الصفقة الإجمالية","تحدد ودياً","B و C معاً"], correct:[4], explanation:"تحسب يومياً من الجزء المتأخر، ولا تتجاوز 10% من القيمة الإجمالية."},
+      {id:39, group:"الصفقات العمومية", weight:1.8, text:"الحالات الحصرية المسموح فيها بـ 'التفاوض المباشر' (التراضي):", options:["حالة استعجال قصوى (كوارث، أمن)","احتكار المورد أو براءة اختراع","فشل المناقصات المفتوحة مرتين متتاليتين","يشترط قرار مسبب خطي وموافقة مسبقة من لجنة الصفقات","جميع البدائل السابقة تمثل شروطاً مرخصة"], correct:[4], explanation:"جميع الخيارات المذكورة هي حالات وشروط مرخصة قانوناً للتفاوض المباشر."},
+      {id:40, group:"الصفقات العمومية", weight:1.2, text:"أي من التعاقدات يُستثنى صراحة من نطاق تطبيق قانون الصفقات العمومية؟", options:["بناء المستشفيات بتمويل داخلي","توريد المواد الغذائية للمدارس","صفقات وعقود قطاع الدفاع الوطني والأمن بداعي السرية","شق الطرق الممولة من صندوق التضامن","توريد الأثاث للمجالس الجهوية"], correct:[2], explanation:"صفقات الدفاع الوطني والأمن تستثنى وتخضع لنظام خاص بداعي السرية."},
+      {id:41, group:"الإدارة المحلية والمالية البلدية", weight:1.8, text:"أي من الكيانات يتمتع قانوناً بالشخصية المعنوية والاستقلال المالي كجماعة إقليمية وحيدة منتخبة؟", options:["الولاية","المقاطعة","البلدية التي يديرها مجلس بلدي منتخب وعمدة","المركز الإداري","المفتشية العامة"], correct:[2], explanation:"البلدية هي الجماعة الإقليمية الوحيدة المتمتعة بالشخصية المعنوية والاستقلال المالي والمنتخبة."},
+      {id:42, group:"الإدارة المحلية والمالية البلدية", weight:3.0, text:"الشروط القانونية الصارمة والقيود المفروضة على اقتراض البلديات:", options:["وجود ميزانية استثمارية مصادق عليها وموافقة الوصاية المسبقة","يقتصر القرض على تمويل نفقات استثمارية منتجة، ويُحظر استخدامه للتشغيل","ألا تتجاوز خدمة الدين السنوية سقفاً معيناً (عادة 30% من الإيرادات)","ترخيص مفتوح بقرار من العمدة","A و B و C معاً صحيحة"], correct:[4], explanation:"شروط الاقتراض: موافقة مسبقة، تخصيص للاستثمار المنتج، وسقف 30% لخدمة الدين."},
+      {id:43, group:"الإدارة المحلية والمالية البلدية", weight:1.8, text:"نقاط التحقق المحورية في 'الحساب الإداري السنوي' للبلدية:", options:["تطابق النفقات مع الإيرادات الجمركية للدولة","مطابقة شاملة بين الحساب الإداري للبلدية (العمدة) مع حساب التسيير المالي الفعلي للمحاسب العمومي","مراجعة السير الذاتية","التحقق من أن الرواتب تعادل 95%","رفع الحساب مباشرة للوزير الأول"], correct:[1], explanation:"المطابقة الشاملة بين حساب الآمر بالصرف وحساب المحاسب العمومي هي النقطة المحورية."},
+      {id:44, group:"الإدارة المحلية والمالية البلدية", weight:1.2, text:"أي من نفقات البلدية يُصنف قانوناً كـ 'نفقة إجبارية'؟", options:["تشييد ملاعب رياضية","رواتب وأجور موظفي البلدية المرسمين ومستحقات الضمان الاجتماعي","تنظيم المهرجانات","المساعدات الطوعية","عقود الشراكة"], correct:[1], explanation:"رواتب الموظفين المرسمين والاشتراكات الاجتماعية هي نفقات إجبارية لا يجوز إغفالها."},
+      {id:45, group:"الإدارة المحلية والمالية البلدية", weight:3.0, text:"إذا عجزت ميزانية بلدية عن التوازن ودخلت في 'عجز هيكلي حاد':", options:["تفعيل مسطرة 'الوصاية المالية المشددة' وإعادة صياغة الميزانية قسراً","توجيه الموارد حصراً لسداد الرواتب تحت إشراف 'مندوب خاص'","إلغاء وحل المجلس البلدي فوراً","إلغاء الكيان القانوني للبلدية","A و B معاً صحيحتان"], correct:[4], explanation:"الوصاية المشددة وتعيين مندوب خاص لتوجيه الموارد للنفقات الإجبارية هي المسطرة القانونية."},
+      {id:46, group:"الإدارة المحلية والمالية البلدية", weight:1.8, text:"الميزة القانونية الحاسمة لـ 'الدومين العام' للبلدية:", options:["قابل للبيع بقرار من العمدة","غير قابل للتصرف فيه، وغير قابل للتقادم، ولا يجوز الحجز عليه مطلقاً","يخضع لقواعد القانون المدني","يقتصر على الأراضي الزراعية","يُسجل كالتزام طارئ"], correct:[1], explanation:"الدومين العام: غير قابل للتصرف، ولا للتقادم، ولا للحجز."},
+      {id:47, group:"الإدارة المحلية والمالية البلدية", weight:3.0, text:"إذا اكتشف ديوان المحاسبة نفقات صرفت بدون اعتماد أو صفقات بالتواطؤ:", options:["توجيه توبيخ شفوي","إصدار أحكام قضائية بإدانة المسؤولين، وإلزامهم بدفع تعويضات من أموالهم الخاصة، وفرض غرامات، وإحالة الملف الجنائي","إلغاء نتائج الانتخابات","شطب ديون البلدية","نقل التبعية لوزارة الداخلية"], correct:[1], explanation:"ديوان المحاسبة يملك سلطة قضائية لإلزام المسؤولين بالتعويض من أموالهم الخاصة وإحالة الملف الجنائي."},
+      {id:48, group:"الإدارة المحلية والمالية البلدية", weight:1.2, text:"النطاق المحدد لـ 'الرقابة الوصائية الإدارية':", options:["رقابة مشروعية للتأكد من مطابقة القرارات للقوانين","حق السلطة الوصية في رفض المصادقة إذا خالفت القوانين","منح الحق للوالي في حل المجلس البلدي في حالات محددة بعد إنذار","رقابة ملاءمة لتعديل أولويات الميزانية","A و B و C معاً صحيحة"], correct:[4], explanation:"الوصاية هي رقابة مشروعية (وليست ملاءمة) تشمل رفض المصادقة وحل المجلس في حالات محددة."},
+      {id:49, group:"الإدارة المحلية والمالية البلدية", weight:1.8, text:"الموارد الذاتية والعادية الرئيسية للبلديات:", options:["القروض والمنح الدولية المباشرة","الضرائب والرسوم المحلية (رسم السكن، الرسم المهني، النظافة، الإعلانات) وتحصل بوساطة المصالح الضريبية","حصة من عائدات الحديد والذهب","تحويلات من ميزانيات الرواتب بالوزارات","بيع عقارات الدومين العام"], correct:[1], explanation:"الموارد الذاتية هي الضرائب والرسوم المحلية التي تحال للخزينة."},
+      {id:50, group:"الإدارة المحلية والمالية البلدية", weight:1.2, text:"التكييف القانوني لـ 'صندوق التضامن للجماعات المحلية':", options:["صندوق خاص لحفظ أموال العمدة","أداة مالية وسيادية لإعادة توزيع جزء من الإيرادات الجبائية على البلديات لتعزيز اللامركزية والحد من الفوارق","تمويل الحملات الانتخابية","جباية الرسوم الجمركية","تمويل نفقات سفر المفتشين"], correct:[1], explanation:"هو أداة لإعادة التوزيع المالي لتحقيق التوازن بين البلديات الغنية والفقيرة."},
+      {id:51, group:"القانون الإداري والوظيفة العمومية", weight:1.2, text:"الأركان والشروط الجوهرية الخمسة لصحة القرار الإداري:", options:["الاختصاص، الشكل والإجراءات، السبب، المحل، والغاية","القيد المحاسبي، الفاتورة، الموافقة","الترقيم، التوقيع، الجرد","المناقصة، الترسية، الضمان","الاستعجال، التناسب، المصلحة العامة"], correct:[0], explanation:"أركان القرار الإداري: الاختصاص، الشكل، السبب، المحل، الغاية."},
+      {id:52, group:"القانون الإداري والوظيفة العمومية", weight:1.8, text:"ما هي 'السلطة التقديرية' وما هي الحدود المقيدة لها؟", options:["حرية مطلقة دون قيد","حرية اختيار وقت ومضمون القرار، مقيدة حتماً بمبدأي 'المشروعية' و'التناسب'","حق المحاسب في رفض الفواتير","تسهيلات من البنك المركزي","صلاحية المفتش في تعديل الميزانية"], correct:[1], explanation:"السلطة التقديرية مقيدة دائماً بالمشروعية (عدم مخالفة القانون) والتناسب."},
+      {id:53, group:"القانون الإداري والوظيفة العمومية", weight:1.8, text:"العقوبات التأديبية من 'الدرجة الثالثة' (أقسى الدرجات):", options:["الإنذار والتوبيخ","الحرمان من الترقية وخفض الدرجة","العزل النهائي من الوظيفة، أو الإحالة الإجبارية للتقاعد المبكر","النقل التأديبي","إلزام الموظف بتأدية اليمين"], correct:[2], explanation:"عقوبات الدرجة الثالثة هي العزل النهائي أو الإحالة القسرية للتقاعد."},
+      {id:54, group:"القانون الإداري والوظيفة العمومية", weight:1.2, text:"الفرق الجوهري بين 'الخطأ المحاسبي' و'المخالفة المالية':", options:["لا يوجد فرق","الخطأ المحاسبي هو سهو غير مقصود يُصلح بقيد عكسي، بينما المخالفة تنطوي على نية العمد أو الإهمال الجسيم في خرق اللوائح","المخالفة من اختصاص الوالي","الخطأ يحتاج لإحالة فورية","تعويض المخالفة من التأمين"], correct:[1], explanation:"الخطأ سهو يُصحح محاسبياً، المخالفة تعمد أو إهمال جسيم يوجب عقوبات."},
+      {id:55, group:"القانون الإداري والوظيفة العمومية", weight:3.0, text:"صرف مبلغ استناداً لـ 'أمر صرف' لكن الملف يفتقر لـ 'الفاتورة الأصلية ومحضر الاستلام':", options:["يعفى المحاسب تماماً","يتحمل المحاسب المسؤولية الشخصية والمالية الكاملة؛ لأنه أخل بواجب التحقق من اكتمال المستندات","تتحمل البلدية المسؤولية","يعتبر خطأ محاسبياً بسيطاً","تسوى بإبرام ملحق تعديلي"], correct:[1], explanation:"المحاسب مسؤول شخصياً ومالياً عن التحقق من اكتمال المستندات الثبوتية قبل الصرف."},
+      {id:56, group:"القانون الإداري والوظيفة العمومية", weight:3.0, text:"إذا رفض المحاسب دفع نفقة، وأصر الآمر على الصرف وأصدر 'أمر تسخير':", options:["يلتزم المحاسب بالصرف فوراً، وتنتقل المسؤولية للآمر بالصرف","يتعين على المحاسب إرسال تقرير فوري لـ DGTCP وديوان المحاسبة","تظل المسؤولية تضامنية إذا كان السبب انعدام الاعتمادات أو الخدمة","يعتبر أمر التسخير باطلاً ولا يجوز الامتثال له","A و B و C معاً صحيحة"], correct:[4], explanation:"أمر التسخير ينقل المسؤولية للآمر، لكن المحاسب يجب أن يبلغ DGTCP، وتظل مسؤوليته قائمة في العيوب الجسيمة."},
+      {id:57, group:"القانون الإداري والوظيفة العمومية", weight:3.0, text:"الحالات الجسيمة الأربع التي يُحظر فيها على المحاسب الامتثال لأمر التسخير:", options:["انعدام أو عدم كفاية الاعتمادات","انعدام أو عدم إثبات الخدمة المؤداة","انعدام تأشيرة المراقب المالي المسبقة","وجود شبهة تزوير واضحة","جميع البدائل السابقة تمثل عيوباً جسيمة تمنع الصرف"], correct:[4], explanation:"هذه العيوب الأربعة تلزم المحاسب بالرفض المطلق حتى مع وجود أمر تسخير."},
+      {id:58, group:"القانون الإداري والوظيفة العمومية", weight:1.8, text:"متى يتم إعداد 'التقرير الخاص' (Rapport spécial)؟", options:["دورياً كل شهر","بصفة استثنائية وعاجلة فور اكتشاف وقائع خطيرة (اختلاس، تزوير)، ويرفع مباشرة لوزير المالية","سنوياً مع قانون التسوية","بناءً على طلب العمدة","كدراسة فنية مسبقة"], correct:[1], explanation:"التقرير الخاص وثيقة طارئة للوقائع الخطيرة ترفع مباشرة لوزير المالية."},
+      {id:59, group:"القانون الإداري والوظيفة العمومية", weight:1.8, text:"الحدود القانونية للتنسيق بين مفتشية الخزينة و IGF:", options:["تبعية رئاسية كاملة لـ IGF","علاقة تنسيق وتكامل مهني دون تبعية إدارية؛ يختص المفتش بالملفات الداخلية، و IGF بكافة الإدارات المالية","منع تبادل المعلومات","IGF للرقابة المسبقة فقط","يقتصر التنسيق على المراجعة الدولية"], correct:[1], explanation:"علاقة تكامل وتنسيق دون تبعية، مع إحالة الملفات الجسيمة لـ IGF."},
+      {id:60, group:"القانون الإداري والوظيفة العمومية", weight:1.8, text:"ماذا يعني 'التدقيق الموضوعاتي' (Audit thématique) من قبل IGF؟", options:["مراجعة سجلات بلدية واحدة تفصيلياً","أسلوب رقابي يركز على دراسة موضوع مالي محدد (مثل صفقات الأدوية) بصفة أفقية عبر كافة الوزارات لتقييم الكفاءة وتقديم توصيات هيكلية","مراجعة الدفتر اليومي","التدقيق في العملات المزيفة","إعداد تقارير للمجلس الوطني"], correct:[1], explanation:"التدقيق الموضوعاتي يقيم موضوعاً معيناً بشكل أفقي وشامل عبر القطاعات لتحسين النظام."}
+    ]
+  }
+};
 
 // ===================== الحالة العامة =====================
+let currentExamKey = null;
+let currentExam = null;
 let currentQuestion = 0;
-let userAnswers = new Array(questions.length).fill(null).map(() => []);
+let userAnswers = [];
 let startTime = null;
 let timerInterval = null;
 
-// ===================== دوال التنقل =====================
+// ===================== دوال التنقل بين الشاشات =====================
+function selectExam(key) {
+  currentExamKey = key;
+  currentExam = EXAMS_DATA[key];
+  
+  // تحديث واجهة المقدمة
+  document.getElementById('exam-title').textContent = currentExam.title;
+  document.getElementById('main-title').textContent = currentExam.title;
+  document.getElementById('main-subtitle').textContent = currentExam.subtitle;
+  
+  const totalQ = currentExam.questions.length;
+  const maxScore = currentExam.questions.reduce((sum, q) => sum + q.weight, 0);
+  const groups = [...new Set(currentExam.questions.map(q => q.group))];
+  
+  document.getElementById('info-q-count').textContent = totalQ + " سؤال";
+  document.getElementById('info-max-score').textContent = maxScore + " نقطة";
+  document.getElementById('info-groups-count').textContent = groups.length + " مجموعات";
+  
+  const groupsContainer = document.getElementById('groups-list-container');
+  groupsContainer.innerHTML = '';
+  groups.forEach((group, idx) => {
+    const qInGroup = currentExam.questions.filter(q => q.group === group).length;
+    const startQ = currentExam.questions.findIndex(q => q.group === group) + 1;
+    const endQ = startQ + qInGroup - 1;
+    
+    const div = document.createElement('div');
+    div.className = 'group-item';
+    div.innerHTML = `<span>${group}</span><span class="num">${startQ}-${endQ}</span>`;
+    groupsContainer.appendChild(div);
+  });
+  
+  document.getElementById('home-screen').classList.remove('active');
+  document.getElementById('intro-screen').classList.add('active');
+}
+
+function goHome() {
+  clearInterval(timerInterval);
+  currentExamKey = null;
+  currentExam = null;
+  currentQuestion = 0;
+  userAnswers = [];
+  
+  document.getElementById('main-title').textContent = "🏛️ منصة اختبارات مفتش الخزينة الرئيسي";
+  document.getElementById('main-subtitle').textContent = "المدرسة الوطنية للإدارة والتوظيف - ENAJM موريتانيا";
+  
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('home-screen').classList.add('active');
+}
+
 function startQuiz() {
   document.getElementById('intro-screen').classList.remove('active');
   document.getElementById('quiz-screen').classList.add('active');
+  
+  userAnswers = new Array(currentExam.questions.length).fill(null).map(() => []);
+  currentQuestion = 0;
   startTime = Date.now();
+  
   startTimer();
   buildNavigator();
   renderQuestion();
 }
 
 function startTimer() {
+  clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
     const h = String(Math.floor(elapsed / 3600)).padStart(2, '0');
@@ -1146,7 +587,7 @@ function startTimer() {
 function buildNavigator() {
   const grid = document.getElementById('navigator-grid');
   grid.innerHTML = '';
-  questions.forEach((q, i) => {
+  currentExam.questions.forEach((q, i) => {
     const btn = document.createElement('button');
     btn.className = 'nav-item';
     btn.textContent = i + 1;
@@ -1172,7 +613,7 @@ function goToQuestion(i) {
 }
 
 function nextQuestion() {
-  if (currentQuestion < questions.length - 1) {
+  if (currentQuestion < currentExam.questions.length - 1) {
     currentQuestion++;
     renderQuestion();
     updateNavigator();
@@ -1189,17 +630,17 @@ function prevQuestion() {
 
 // ===================== عرض السؤال =====================
 function renderQuestion() {
-  const q = questions[currentQuestion];
+  const q = currentExam.questions[currentQuestion];
   document.getElementById('q-number').textContent = `السؤال ${q.id}`;
   document.getElementById('q-group').textContent = q.group;
   document.getElementById('q-weight').textContent = `${q.weight} نقطة`;
   document.getElementById('q-text').textContent = q.text;
-  document.getElementById('current-q').textContent = `${currentQuestion + 1}/60`;
+  document.getElementById('current-q').textContent = `${currentQuestion + 1}/${currentExam.questions.length}`;
   document.getElementById('current-group').textContent = q.group;
   
   const answeredCount = userAnswers.filter(a => a.length > 0).length;
   document.getElementById('answered-count').textContent = answeredCount;
-  document.getElementById('progress-fill').style.width = `${(answeredCount / questions.length) * 100}%`;
+  document.getElementById('progress-fill').style.width = `${(answeredCount / currentExam.questions.length) * 100}%`;
   
   const list = document.getElementById('options-list');
   list.innerHTML = '';
@@ -1218,11 +659,10 @@ function renderQuestion() {
 }
 
 function toggleOption(i) {
-  const q = questions[currentQuestion];
+  const q = currentExam.questions[currentQuestion];
   const isMultiple = q.correct.length > 1;
   
   if (isMultiple) {
-    // إجابات متعددة
     const idx = userAnswers[currentQuestion].indexOf(i);
     if (idx > -1) {
       userAnswers[currentQuestion].splice(idx, 1);
@@ -1230,7 +670,6 @@ function toggleOption(i) {
       userAnswers[currentQuestion].push(i);
     }
   } else {
-    // إجابة واحدة
     userAnswers[currentQuestion] = [i];
   }
   
@@ -1245,7 +684,7 @@ function calculateScore() {
   const details = [];
   let correctCount = 0, partialCount = 0, wrongCount = 0, unansweredCount = 0;
   
-  questions.forEach((q, i) => {
+  currentExam.questions.forEach((q, i) => {
     maxScore += q.weight;
     const userAns = userAnswers[i];
     const correctAns = q.correct;
@@ -1259,7 +698,6 @@ function calculateScore() {
       unansweredCount++;
       status = 'unanswered';
     } else {
-      // حساب النقاط
       let correctSelected = 0;
       let wrongSelected = 0;
       
@@ -1273,10 +711,8 @@ function calculateScore() {
         }
       });
       
-      // إذا كانت النتيجة سالبة، تُحوّل إلى صفر
       if (questionScore < 0) questionScore = 0;
       
-      // تحديد الحالة
       if (correctSelected === Nc && wrongSelected === 0) {
         status = 'correct';
         correctCount++;
@@ -1295,39 +731,21 @@ function calculateScore() {
     }
     
     totalScore += questionScore;
-    details.push({
-      question: q,
-      userAnswers: userAns,
-      score: questionScore,
-      status: status
-    });
+    details.push({ question: q, userAnswers: userAns, score: questionScore, status: status });
   });
   
-  return {
-    totalScore: Math.round(totalScore * 100) / 100,
-    maxScore: maxScore,
-    correctCount,
-    partialCount,
-    wrongCount,
-    unansweredCount,
-    details
-  };
+  return { totalScore: Math.round(totalScore * 100) / 100, maxScore, correctCount, partialCount, wrongCount, unansweredCount, details };
 }
 
-// ===================== إنهاء المسابقة =====================
 function confirmSubmit() {
   const answeredCount = userAnswers.filter(a => a.length > 0).length;
-  const unanswered = questions.length - answeredCount;
+  const unanswered = currentExam.questions.length - answeredCount;
   
-  let msg = `لقد أجبت على ${answeredCount} من ${questions.length} سؤالاً.`;
-  if (unanswered > 0) {
-    msg += `\n\n⚠️ لديك ${unanswered} سؤال لم تُجب عليه بعد.`;
-  }
+  let msg = `لقد أجبت على ${answeredCount} من ${currentExam.questions.length} سؤالاً.`;
+  if (unanswered > 0) msg += `\n\n⚠️ لديك ${unanswered} سؤال لم تُجب عليه بعد.`;
   msg += '\n\nهل تريد إنهاء المسابقة وعرض النتائج؟';
   
-  if (confirm(msg)) {
-    submitQuiz();
-  }
+  if (confirm(msg)) submitQuiz();
 }
 
 function submitQuiz() {
@@ -1341,9 +759,9 @@ function submitQuiz() {
   document.getElementById('quiz-screen').classList.remove('active');
   document.getElementById('results-screen').classList.add('active');
   
-  // عرض النتائج
   const percent = (result.totalScore / result.maxScore) * 100;
   document.getElementById('final-score').textContent = result.totalScore.toFixed(2);
+  document.getElementById('final-max').textContent = `/ ${result.maxScore}`;
   document.getElementById('score-percent').textContent = `${percent.toFixed(1)}%`;
   
   const circle = document.getElementById('score-circle');
@@ -1371,13 +789,10 @@ function submitQuiz() {
   renderReview(result);
 }
 
-// ===================== عرض المجموعات =====================
 function renderGroupsBars(result) {
   const groups = {};
   result.details.forEach(d => {
-    if (!groups[d.question.group]) {
-      groups[d.question.group] = { score: 0, max: 0, count: 0 };
-    }
+    if (!groups[d.question.group]) groups[d.question.group] = { score: 0, max: 0, count: 0 };
     groups[d.question.group].score += d.score;
     groups[d.question.group].max += d.question.weight;
     groups[d.question.group].count++;
@@ -1403,7 +818,6 @@ function renderGroupsBars(result) {
   });
 }
 
-// ===================== مراجعة الأسئلة =====================
 function renderReview(result) {
   const container = document.getElementById('review-list');
   container.innerHTML = '';
@@ -1425,19 +839,11 @@ function renderReview(result) {
     d.question.options.forEach((opt, j) => {
       const isCorrect = d.question.correct.includes(j);
       const isUserSelected = d.userAnswers.includes(j);
-      let cls = '';
-      let marker = '';
+      let cls = '', marker = '';
       
-      if (isCorrect && isUserSelected) {
-        cls = 'correct-answer';
-        marker = '✓ ';
-      } else if (isCorrect && !isUserSelected) {
-        cls = 'missed-answer';
-        marker = '○ ';
-      } else if (!isCorrect && isUserSelected) {
-        cls = 'wrong-answer';
-        marker = '✗ ';
-      }
+      if (isCorrect && isUserSelected) { cls = 'correct-answer'; marker = '✓ '; }
+      else if (isCorrect && !isUserSelected) { cls = 'missed-answer'; marker = '○ '; }
+      else if (!isCorrect && isUserSelected) { cls = 'wrong-answer'; marker = '✗ '; }
       
       optionsHtml += `<li class="${cls}">${marker}<strong>${letters[j]})</strong> ${opt}</li>`;
     });
@@ -1458,35 +864,19 @@ function renderReview(result) {
   });
 }
 
-// ===================== التبويبات =====================
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   event.target.classList.add('active');
-  
   document.getElementById('tab-groups').style.display = tab === 'groups' ? 'block' : 'none';
   document.getElementById('tab-review').style.display = tab === 'review' ? 'block' : 'none';
 }
 
-// ===================== إعادة الاختبار =====================
-function restartQuiz() {
-  if (!confirm('هل تريد إعادة المسابقة من البداية؟ ستفقد جميع إجاباتك.')) return;
-  currentQuestion = 0;
-  userAnswers = new Array(questions.length).fill(null).map(() => []);
-  document.getElementById('results-screen').classList.remove('active');
-  document.getElementById('intro-screen').classList.add('active');
-  clearInterval(timerInterval);
-}
-
-// اختصارات لوحة المفاتيح
 document.addEventListener('keydown', (e) => {
   if (!document.getElementById('quiz-screen').classList.contains('active')) return;
   if (e.key === 'ArrowLeft') nextQuestion();
   else if (e.key === 'ArrowRight') prevQuestion();
-  else if (e.key >= '1' && e.key <= '5') {
-    toggleOption(parseInt(e.key) - 1);
-  }
+  else if (e.key >= '1' && e.key <= '5') toggleOption(parseInt(e.key) - 1);
 });
 </script>
-
 </body>
 </html>
